@@ -1,0 +1,36 @@
+{
+  "name": "platform",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/moment": "^2.13.0",
+    "axios": "^1.5.1",
+    "element-plus": "^2.4.1",
+    "less": "^4.2.0",
+    "moment": "^2.29.4",
+    "normalize.css": "^8.0.1",
+    "pinia": "^2.1.7",
+    "vue": "^3.3.4",
+    "vue-i18n": "^9.6.2",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@types/json-schema": "^7.0.14",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vue-tsc": "^1.8.5"
+  }
+}
