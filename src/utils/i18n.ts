@@ -6,7 +6,8 @@ const i18n = createI18n({
     en: {
       // 面包屑
       welcome: 'welcome',
-      anchor: 'Anchor Management',
+      game: 'Game Management',
+      mine: 'My Game',
       wallet: 'Wallet',
       live: 'Live Recording',
       info: 'Personal Information',
@@ -68,7 +69,8 @@ const i18n = createI18n({
     },
     zh: {
       welcome: '欢迎',
-      anchor: '主播管理',
+      game: '游戏管理',
+      mine: '我的游戏',
       wallet: '钱包',
       live: '直播记录',
       info: '个人信息',
@@ -130,7 +132,8 @@ const i18n = createI18n({
     },
     tw: {
       welcome: '歡迎',
-      anchor: '主播管理',
+      game: '遊戲管理',
+      mine: '我的遊戲',
       wallet: '錢包',
       live: '直播記錄',
       info: '個人信息',

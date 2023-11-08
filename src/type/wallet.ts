@@ -1,9 +1,7 @@
 export interface infoList {
-  mobile: string
   header_img: string
-  gzs_title: string
-  gzs_desc: string
-  tx_card: string
+  nickname: string
   current_price: string
   uid: string
+  zhubo_uid: string
 }

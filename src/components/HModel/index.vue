@@ -14,7 +14,7 @@
 
 <style lang="less" scoped>
 .box {
-  margin-top: 30px;
+  // margin-top: 30px;
   padding: 30px;
 }
 :deep(.el-card__header) {

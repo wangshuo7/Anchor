@@ -18,11 +18,28 @@ const routes = [
         name: 'next',
         component: () => import('@/views/Welcome/next.vue')
       },
-      // 主播
+      // 游戏管理
       {
-        path: '/anchor',
-        name: 'Anchor',
-        component: () => import('@/views/Anchor/index.vue')
+        path: '/game',
+        name: 'Game',
+        component: () => import('@/views/Game/index.vue')
+      },
+      // 游戏反馈
+      {
+        path: '/game/feedback',
+        name: 'GameFeedback',
+        component: () => import('@/views/Feedback/index.vue')
+      },
+      // 我的游戏
+      {
+        path: '/mine',
+        name: 'Mine',
+        component: () => import('@/views/Mine/index.vue')
+      },
+      {
+        path: '/mine/feedback',
+        name: 'MineFeedback',
+        component: () => import('@/views/Feedback/index.vue')
       },
       // 直播记录
       {

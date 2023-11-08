@@ -32,12 +32,12 @@ import { register } from '../../../api/login'
 // import HUpload from '../../../components/HUpload/index.vue'
 const ruleFormRef = ref<FormInstance>()
 const form = reactive<register_type>({
-  username: 'fdsGHGJKJHf111dsf1',
-  password: 'fdsfdsf1',
-  mobile: '15563875111',
-  nickname: 'fdsfdsfdsf11',
-  union_id: '11111111111111111',
-  tx_card: ''
+  username: 'wangshuo123',
+  password: '122333Ws',
+  mobile: '13665439520',
+  nickname: '枫',
+  union_id: 'gh0fff035',
+  tx_card: '13665439520'
 })
 const rules = reactive<FormRules<register_type>>({
   username: [{ required: true, message: '账号不能为空', trigger: 'blur' }],

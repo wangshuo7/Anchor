@@ -5,9 +5,13 @@
     </div>
     <div>
       <el-menu default-active="1" class="el-menu-vertical-demo">
-        <el-menu-item index="anchor" @click="goAnchor">
+        <el-menu-item index="game" @click="goGame">
+          <el-icon><SwitchFilled /></el-icon>
+          <template #title>{{ $t('game') }}</template>
+        </el-menu-item>
+        <el-menu-item index="mine" @click="goMine">
           <el-icon><Orange /></el-icon>
-          <template #title>{{ $t('anchor') }}</template>
+          <template #title>{{ $t('mine') }}</template>
         </el-menu-item>
         <el-menu-item index="live" @click="goLive">
           <el-icon><VideoCamera /></el-icon>
@@ -46,11 +50,19 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Orange, VideoCamera, Postcard } from '@element-plus/icons-vue'
+import {
+  Orange,
+  VideoCamera,
+  Postcard,
+  SwitchFilled
+} from '@element-plus/icons-vue'
 
 import router from '../../../router'
-function goAnchor() {
-  router.push('/anchor')
+function goGame() {
+  router.push('/game')
+}
+function goMine() {
+  router.push('/mine')
 }
 function goLive() {
   router.push('/live')

@@ -1,11 +1,8 @@
 <template>
   <div>
     <div>头像:{{ infos?.header_img }}</div>
-    <div>公会名称:{{ infos?.gzs_title }}</div>
-    <div>公会简介:{{ infos?.gzs_desc }}</div>
-    <div>手机号:{{ infos?.mobile }}</div>
+    <div>昵称:{{ infos?.nickname }}</div>
     <div>云豆:{{ infos?.current_price }}</div>
-    <div>提现账号:{{ infos?.tx_card }}</div>
     <div>uid:{{ infos?.uid }}</div>
   </div>
 </template>
