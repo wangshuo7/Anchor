@@ -9,6 +9,16 @@
           placeholder="请输入游戏名称"
         ></el-input>
       </el-form-item>
+      <el-form-item label="排序">
+        <el-select v-model="queryForm.sort" clearable>
+          <el-option value="2" label="创建时间正序" />
+          <el-option value="1" label="创建时间倒序" />
+          <el-option value="4" label="热度正序" />
+          <el-option value="3" label="热度倒序" />
+          <el-option value="6" label="banner正序" />
+          <el-option value="5" label="banner倒序" />
+        </el-select>
+      </el-form-item>
       <el-form-item>
         <el-button style="margin: 0 20px" type="primary" @click="query">{{
           $t('button.query')
@@ -208,7 +218,8 @@ const getPlatformsTitle = (game_pingtai_id: any) => {
   return titles.join(',')
 }
 const queryForm = ref<any>({
-  title: ''
+  title: '',
+  sort: ''
 })
 const tableData = ref<any>()
 const dialogVisible = ref<boolean>()
@@ -294,7 +305,7 @@ async function query() {
       page: currentPage.value,
       page_size: pageSize.value,
       title: queryForm.value.title,
-      orderby: ''
+      orderby: queryForm.value.sort
     })
     tableData.value = response?.data?.list
     totalItems.value = response?.data?.count
