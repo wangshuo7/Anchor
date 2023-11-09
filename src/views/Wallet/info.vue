@@ -1,9 +1,35 @@
 <template>
-  <div>
-    <div>头像:{{ infos?.header_img }}</div>
-    <div>昵称:{{ infos?.nickname }}</div>
-    <div>云豆:{{ infos?.current_price }}</div>
-    <div>uid:{{ infos?.uid }}</div>
+  <div class="card">
+    <el-card shadow="never">
+      <template #header>
+        <span>个人信息</span>
+      </template>
+      <div class="img">
+        <div class="img-box">
+          <img
+            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+            alt="头像"
+          />
+          <!-- <img :src="infos.header_img" alt=""> -->
+        </div>
+      </div>
+      <el-divider></el-divider>
+      <div class="info-item">
+        <span>昵称</span>
+        <span>{{ infos?.nickname }}</span>
+      </div>
+      <el-divider></el-divider>
+      <div class="info-item">
+        <span>云豆</span>
+        <span>{{ infos?.current_price }}</span>
+      </div>
+      <el-divider></el-divider>
+      <div class="info-item">
+        <span>uid</span>
+        <span>{{ infos?.uid }}</span>
+      </div>
+      <el-divider></el-divider>
+    </el-card>
   </div>
 </template>
 
@@ -22,4 +48,28 @@ onMounted(() => {
 })
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.card {
+  width: 300px;
+  .img {
+    height: 150px;
+    margin-bottom: 20px;
+    .img-box {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto;
+      overflow: hidden;
+      img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+}
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>
