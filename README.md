@@ -1,22 +1,84 @@
-# Vue 3 + TypeScript + Vite
+### 项目名称
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+互游云平台 Anchor（主播端）
 
-## Recommended IDE Setup
+### 安装依赖
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+npm install
 
-## Type Support For `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## 启动项目
+### 启动项目
 
 npm run dev
+
+### 构建项目
+
+npm run build
+
+### 技术栈
+
+-Vue3
+-TS
+-pinia
+-axios
+-less
+-moment
+-Vue-i18n
+-Vue-router
+-Element plus
+
+### src文件目录
+
+src/
+|-api/
+|————(...).ts               (各目录接口文件)
+|-assets/                   (项目静态文件夹)
+|-components                (全局公共组件)
+|————HModel                 (全局公共组件名)
+|——————index.vue
+|-router/                   (项目路由)
+|————index.vue
+|-store/                    (pinia)
+|————languageStore.ts
+|-type/                     (TS类型)
+|————login.ts
+|-utils/                    (工具)
+|————i18n.ts
+|-views/                    (用户界面) 
+|————Login
+
+## views文件目录
+views/
+|-Login/                    (总模块目录)
+|————index.vue              (页面入口文件)
+|————component/
+|————————(...).vue          (公共组件)
+
+### 代码风格
+
+## 单文件组件命名 (大驼峰)
+
+components/
+|- MyComponent.vue
+
+## 基础组件名称(全部以H为开头)
+components/
+|-HModel.vue
+|-HBreadcrumbs.vue
+
+## v-bind v-on v-slot 应尽量使用语法糖
+
+<input
+:value="newTodoText"
+:placeholder="newTodoInstructions"
+/>
+<input
+@input="onInput"
+@focus="onFocus"
+/>
+
+<template #header>
+  <h1>Here might be a page title</h1>
+</template>
+<template #footer>
+  <p>Here's some contact info</p>
+</template>
