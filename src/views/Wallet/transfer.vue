@@ -23,6 +23,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'Transfer'
+}
+</script>
 <script lang="ts" setup>
 import { ElMessage, FormInstance } from 'element-plus'
 import { transferAccounts } from '../../api/wallet'

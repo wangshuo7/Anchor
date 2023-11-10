@@ -29,7 +29,7 @@
   </div>
   <HModel>
     <template #head>
-      <span style="font-weight: bolder">{{ $t('game') }}</span>
+      <span style="font-weight: bolder">我的游戏</span>
     </template>
     <template #body>
       <el-table
@@ -140,6 +140,11 @@
   </el-dialog>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'Mine'
+}
+</script>
 <script lang="ts" setup>
 import { ref, onMounted, watch } from 'vue'
 import { getMyGameList } from '../../api/mine'

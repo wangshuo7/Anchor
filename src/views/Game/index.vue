@@ -181,6 +181,11 @@
   </el-dialog>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'Game'
+}
+</script>
 <script lang="ts" setup>
 import { ref, onMounted, watch } from 'vue'
 import { buyGame, getGameList } from '../../api/game'
@@ -333,10 +338,6 @@ onMounted(async () => {
   languages.value = globalStore.language
   categories.value = globalStore.category
   platforms.value = globalStore.platform
-  console.log(languages.value)
-  console.log(categories.value)
-  console.log(platforms.value)
-
   query()
 })
 

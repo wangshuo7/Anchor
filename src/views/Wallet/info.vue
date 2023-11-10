@@ -33,6 +33,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'Info'
+}
+</script>
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { getPersonalInfo } from '../../api/wallet'

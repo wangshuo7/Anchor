@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <el-button @click="router.back()">←</el-button>
     <el-tag
       type="success"
       style="width: 100px; height: 30px; margin-bottom: 20px"
@@ -165,6 +166,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'Feedback'
+}
+</script>
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 // import HModel from '../../components/HModel/index.vue'
@@ -269,11 +275,11 @@ async function query() {
     console.error('Error fetching data: ', error)
   }
 }
+
 onMounted(() => {
   gameId.value = router.currentRoute.value.query.id
   gameName.value = router.currentRoute.value.query.name
   query()
-  // console.log(feedback.value)
 })
 // 时间格式化
 function formatTime(time: number) {

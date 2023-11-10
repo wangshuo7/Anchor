@@ -39,6 +39,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'Recharge'
+}
+</script>
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { getRecharge } from '../../api/wallet'

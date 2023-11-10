@@ -18,6 +18,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'Withdrawal'
+}
+</script>
 <script lang="ts" setup>
 import { ElMessage, FormInstance } from 'element-plus'
 import { withdrawalApply } from '../../api/wallet'

@@ -38,7 +38,7 @@ request.interceptors.response.use(
       //请求成功
       if (data.t) {
         localStorage.setItem('authtoken', data.t)
-        router.push('/welcome')
+        router.push('/')
       }
       return response.data
     } else if (code === 0) {

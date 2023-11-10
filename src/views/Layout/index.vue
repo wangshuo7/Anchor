@@ -9,7 +9,8 @@
           <Header></Header>
         </el-header>
         <el-main>
-          <Content></Content>
+          <div v-if="route.path === '/'">欢迎</div>
+          <Content v-else></Content>
         </el-main>
       </el-container>
     </el-container>
@@ -20,6 +21,8 @@
 import Menu from './components/Menu.vue'
 import Content from './components/Content.vue'
 import Header from './components/Header.vue'
+import {useRoute} from 'vue-router'
+const route = useRoute()
 </script>
 
 <style lang="less" scoped>

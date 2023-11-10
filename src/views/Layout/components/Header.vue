@@ -46,7 +46,8 @@
       </template>
     </el-dropdown>
   </div>
-  <HBreadcrumbs></HBreadcrumbs>
+  <!-- <HBreadcrumbs></HBreadcrumbs> -->
+  <HTabs></HTabs>
 </template>
 
 <script lang="ts" setup>
@@ -55,7 +56,8 @@ import { ArrowDown } from '@element-plus/icons-vue'
 import i18n from '../../../utils/i18n'
 import { useLanguageStore } from '../../../store/languageStore'
 import router from '../../../router/index'
-import HBreadcrumbs from '../../../components/HBreadcrumbs/index.vue'
+// import HBreadcrumbs from '../../../components/HBreadcrumbs/index.vue'
+import HTabs from '../../../components/HTabs/index.vue'
 
 // test
 

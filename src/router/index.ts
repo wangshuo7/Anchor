@@ -3,7 +3,7 @@ import Layout from '@/views/Layout/index.vue'
 import Login from '@/views/Login/index.vue'
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Layout,
     children: [
@@ -90,10 +90,10 @@ const routes = [
     name: 'Login',
     component: Login
   },
-  {
-    path: '/',
-    redirect: '/login'
-  }
+  // {
+  //   path: '/',
+  //   redirect: '/login'
+  // }
 ]
 
 const router = createRouter({

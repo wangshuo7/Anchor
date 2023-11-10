@@ -17,6 +17,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'Card'
+}
+</script>
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'

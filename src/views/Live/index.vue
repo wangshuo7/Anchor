@@ -74,6 +74,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'Live'
+}
+</script>
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { getLiveRecording } from '../../api/live'

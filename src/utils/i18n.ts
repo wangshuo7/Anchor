@@ -37,11 +37,6 @@ const i18n = createI18n({
         phoneNumber: 'Phone number',
         withdrawalAccount: 'Withdrawal account'
       },
-      menu: {
-        anchor: 'Anchor Management',
-        live: 'Live Recording',
-        wallet: 'Wallet'
-      },
       button: {
         add: 'Add',
         edit: 'Edit',
@@ -100,11 +95,6 @@ const i18n = createI18n({
         phoneNumber: '手机号',
         withdrawalAccount: '提现账号'
       },
-      menu: {
-        anchor: '主播管理',
-        live: '直播记录',
-        wallet: '钱包'
-      },
       button: {
         add: '添加',
         edit: '编辑',
@@ -162,11 +152,6 @@ const i18n = createI18n({
         nickname: '暱稱',
         phoneNumber: '手機號',
         withdrawalAccount: '提現賬號'
-      },
-      menu: {
-        anchor: '主播管理',
-        live: '直播記錄',
-        wallet: '錢包'
       },
       button: {
         add: '添加',
