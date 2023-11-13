@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <el-card v-bind="$attrs">
+    <el-card v-bind="$attrs" shadow="never">
       <template #header>
         <slot name="head"></slot>
       </template>

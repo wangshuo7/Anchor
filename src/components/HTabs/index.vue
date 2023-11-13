@@ -56,6 +56,8 @@ function closeTab(name: any) {
       pageCacheStore.removeCachedPage(name)
     }
   }
+  // 关闭的是未激活标签时
+  pageCacheStore.removeCachedPage(name)
 }
 function addTab(title: any, route: any) {
   const existingTab = tabs.value.find((tab: any) => tab.route === route)
@@ -72,7 +74,7 @@ function addTab(title: any, route: any) {
 
 onMounted(() => {
   // 页面加载时不再初始化标签页,保留当前路由的标签页
-  if(route.path !== '/') {
+  if (route.path !== '/') {
     addTab(route.path, route.path)
   }
 })
@@ -80,9 +82,10 @@ onMounted(() => {
 watch(
   () => route.path,
   (newPath) => {
+    // 正则判断newPath有几个'/'
+    let path = (newPath.match(/\//g) || []).length
     // 监听路由变化，根据路由添加标签页
-    if (newPath === '/') return
-    if(newPath.length >= 7) return
+    if (newPath === '/' || path >= 2) return
     addTab(newPath, newPath)
   }
 )

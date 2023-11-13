@@ -7,17 +7,6 @@ const routes = [
     name: 'Home',
     component: Layout,
     children: [
-      {
-        path: '/welcome',
-        name: 'Welcome',
-        component: () => import('@/views/Welcome/index.vue')
-      },
-      // test
-      {
-        path: '/welcome/next',
-        name: 'next',
-        component: () => import('@/views/Welcome/next.vue')
-      },
       // 游戏管理
       {
         path: '/game',
@@ -90,10 +79,6 @@ const routes = [
     name: 'Login',
     component: Login
   },
-  // {
-  //   path: '/',
-  //   redirect: '/login'
-  // }
 ]
 
 const router = createRouter({

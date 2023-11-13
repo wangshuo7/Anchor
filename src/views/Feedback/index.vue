@@ -1,11 +1,10 @@
 <template>
   <div class="main">
-    <el-button @click="router.back()">←</el-button>
-    <el-tag
-      type="success"
-      style="width: 100px; height: 30px; margin-bottom: 20px"
-      >{{ gameName }}</el-tag
-    >
+    <el-page-header @back="router.back()">
+      <template #content>
+        <span>{{ gameName }}</span>
+      </template>
+    </el-page-header>
     <div v-if="feedback?.length >= 1">
       <el-scrollbar class="feed">
         <div>
