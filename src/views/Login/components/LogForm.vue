@@ -6,6 +6,7 @@
         <el-input
           @focus="userFocus"
           @blur="userBlur"
+          @keyup.enter="onSubmit"
           class="login-input user-input"
           :class="{ active: user_border }"
           v-model="form.username"
@@ -18,6 +19,7 @@
         <el-input
           @focus="psdFocus"
           @blur="psdBlur"
+          @keyup.enter="onSubmit"
           class="login-input psd-input"
           :class="{ active: psd_border }"
           type="password"
@@ -45,7 +47,8 @@ import { ref, reactive, onMounted } from 'vue'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import { login } from '../../../api/login'
 import { login_type } from '../../../type/login'
-
+import { useAccountStore } from '../../../store/account'
+const accountStore = useAccountStore()
 const ruleFormRef = ref<FormInstance>()
 
 const form = reactive<login_type>({
@@ -77,13 +80,13 @@ async function onSubmit() {
     if (valid) {
       const res: any = await login(send_data)
       if (res?.code === 200) {
-        localStorage.setItem('hoo_remember', remember.value + '')
+        accountStore.setRemember(remember.value)
         if (remember.value) {
-          localStorage.setItem('hoo_username', form.username)
-          localStorage.setItem('hoo_password', form.password)
+          accountStore.setUsername(form.username)
+          accountStore.setPassword(form.password)
         } else {
-          localStorage.removeItem('hoo_username')
-          localStorage.removeItem('hoo_password')
+          accountStore.setUsername('')
+          accountStore.setPassword('')
         }
         ElMessage.success('登录成功')
       }
@@ -126,16 +129,15 @@ const psd_border = ref<boolean>(false)
 // 记住密码
 const remember = ref<boolean>(false)
 onMounted(() => {
-  const is_remember = localStorage.getItem('hoo_remember')
-  if (is_remember === 'true') {
+  if (accountStore.remember) {
     remember.value = true
+    form.username = accountStore.username
+    form.password = accountStore.password
   } else {
     remember.value = false
+    form.username = ''
+    form.password = ''
   }
-  const username = localStorage.getItem('hoo_username')
-  const password = localStorage.getItem('hoo_password')
-  if (username) form.username = username
-  if (password) form.password = password
 
   if (form.username) {
     user_active.value = true
