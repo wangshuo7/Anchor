@@ -362,7 +362,9 @@ function formatTime(time: number) {
   align-items: center;
 }
 .query {
-  margin-top: 20px;
+  // margin-top: 20px;
+  padding: 20px;
+  padding-bottom: 0;
   .el-input {
     width: 250px;
   }

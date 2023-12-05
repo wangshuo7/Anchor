@@ -10,10 +10,20 @@
       <el-tab-pane
         v-for="(tab, index) in tabs"
         :key="index"
-        :label="$t(`${tab.title.slice(1)}`)"
         :name="tab.route"
         closable
-      />
+        class="tab-pane"
+      >
+        <template #label>
+          <div class="tab-content">
+            <span
+              class="round"
+              :class="{ active: activeTab === tab.route }"
+            ></span>
+            <span class="label">{{ $t(`${tab.title.slice(1)}`) }}</span>
+          </div>
+        </template>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -49,7 +59,6 @@ function closeTab(name: any) {
     // 设置 activeTab 为上一个标签的路由路径,当只剩一个标签时,跳转到最后剩下的路由即可
     const prevTab =
       tabs.value.length === 1 ? tabs.value[0] : tabs.value[index - 1]
-    // console.log('prevtab',prevTab)
     if (prevTab) {
       activeTab.value = prevTab.route
       router.push(prevTab.route)
@@ -59,9 +68,9 @@ function closeTab(name: any) {
   // 关闭的是未激活标签时
   pageCacheStore.removeCachedPage(name)
 }
+
 function addTab(title: any, route: any) {
   const existingTab = tabs.value.find((tab: any) => tab.route === route)
-
   if (!existingTab) {
     tabs.value.push({ title, route })
     activeTab.value = route // 切换到新增的标签页
@@ -95,7 +104,7 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .tab-header {
   display: flex;
   background-color: #f0f0f0;
@@ -114,5 +123,30 @@ onBeforeUnmount(() => {
 .close {
   margin-left: 8px;
   cursor: pointer;
+}
+.tab-content {
+  display: flex;
+  align-items: center;
+  .round {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    margin-right: 8px;
+  }
+  .round.active {
+    background: #4d70ff;
+  }
+}
+:deep(.el-tabs__nav-scroll) {
+  .el-tabs__nav {
+    border-radius: 0 0 0 0 !important;
+    transform: translateY(-2px) !important;
+    .el-tabs__item {
+      position: relative;
+      // top: -4px;
+      border-bottom: none;
+    }
+  }
 }
 </style>

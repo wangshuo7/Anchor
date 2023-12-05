@@ -16,6 +16,8 @@ const i18n = createI18n({
       card: 'Rechargeable Card',
       withdrawal: 'Withdrawal Application',
       transfer: 'Transfer Accounts',
+      feedback: 'Feedback',
+      'game/feedback': 'Feedback',
       form: {
         transfer: 'Transfer',
         yundou: 'Yun Dou',
@@ -74,6 +76,7 @@ const i18n = createI18n({
       card: '充值卡',
       withdrawal: '提现申请',
       transfer: '转账',
+      feedback: '反馈列表',
       form: {
         transfer: '转账',
         yundou: '云豆',
@@ -132,6 +135,7 @@ const i18n = createI18n({
       card: '充值卡',
       withdrawal: '提現申請',
       transfer: '轉賬',
+      feedback: '反餽列表',
       form: {
         transfer: '轉賬',
         yundou: '雲豆',
