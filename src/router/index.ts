@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/views/Layout/index.vue'
 import Login from '@/views/Login/index.vue'
 import { done, start } from '../utils/nprogress'
-import { ElMessage } from 'element-plus'
 
 const routes = [
   {
@@ -100,7 +99,6 @@ router.beforeEach((to, _from, next) => {
   if (to.name !== 'Login' && !isAuthenticated) {
     // 如果未登录且目标路由不是登录页，则重定向到登录页面
     next({ name: 'Login' })
-    ElMessage.error('请先登录')
   } else {
     // 否则，继续正常导航
     next()
