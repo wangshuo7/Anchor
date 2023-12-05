@@ -78,14 +78,27 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
-  },
+  }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
 })
+router.beforeEach((to, _from, next) => {
+  const isAuthenticated = localStorage.getItem('authtoken')
 
+  if (to.name !== 'Login' && !isAuthenticated) {
+    // 如果未登录且目标路由不是登录页，则重定向到登录页面
+    next({ name: 'Login' })
+  } else if (to.name === 'Login' && isAuthenticated) {
+    // 如果已登录且目标路由是登录页，则重定向到首页
+    next({ name: 'Home' })
+  } else {
+    // 否则，继续正常导航
+    next()
+  }
+})
 export function useRouter() {
   return router
 }
