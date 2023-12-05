@@ -1,6 +1,9 @@
 <template>
   <div>
     <HModel>
+      <template #head>
+        <div>{{ $t('expend') }}</div>
+      </template>
       <template #body>
         <el-table
           v-loading="loading"

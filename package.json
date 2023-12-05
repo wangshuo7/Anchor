@@ -12,6 +12,7 @@
     "@types/moment": "^2.13.0",
     "axios": "^1.5.1",
     "element-plus": "^2.4.1",
+    "js-base64": "^3.7.5",
     "less": "^4.2.0",
     "moment": "^2.29.4",
     "normalize.css": "^8.0.1",

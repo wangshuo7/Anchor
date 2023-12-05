@@ -47,8 +47,8 @@ import { ref, reactive, onMounted } from 'vue'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import { login } from '../../../api/login'
 import { login_type } from '../../../type/login'
-import { useAccountStore } from '../../../store/account'
-const accountStore = useAccountStore()
+import { Base64 } from 'js-base64'
+
 const ruleFormRef = ref<FormInstance>()
 
 const form = reactive<login_type>({
@@ -80,13 +80,14 @@ async function onSubmit() {
     if (valid) {
       const res: any = await login(send_data)
       if (res?.code === 200) {
-        accountStore.setRemember(remember.value)
+        localStorage.setItem('hoo_remember', remember.value + '')
+        const basePassword = Base64.encode(form.password) // 加密
         if (remember.value) {
-          accountStore.setUsername(form.username)
-          accountStore.setPassword(form.password)
+          localStorage.setItem('hoo_username', form.username)
+          localStorage.setItem('hoo_password', basePassword)
         } else {
-          accountStore.setUsername('')
-          accountStore.setPassword('')
+          localStorage.removeItem('hoo_username')
+          localStorage.removeItem('hoo_password')
         }
         ElMessage.success('登录成功')
       }
@@ -129,15 +130,16 @@ const psd_border = ref<boolean>(false)
 // 记住密码
 const remember = ref<boolean>(false)
 onMounted(() => {
-  if (accountStore.remember) {
+  const is_remember = localStorage.getItem('hoo_remember')
+  if (is_remember === 'true') {
     remember.value = true
-    form.username = accountStore.username
-    form.password = accountStore.password
   } else {
     remember.value = false
-    form.username = ''
-    form.password = ''
   }
+  const username = localStorage.getItem('hoo_username')
+  const password = localStorage.getItem('hoo_password')
+  if (username) form.username = username
+  if (password) form.password = Base64.decode(password) // 解密
 
   if (form.username) {
     user_active.value = true
