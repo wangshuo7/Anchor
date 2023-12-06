@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <session>
     <HModel>
       <template #head>
         <div>{{ $t('recharge') }}</div>
@@ -39,7 +39,7 @@
         </div>
       </template>
     </HModel>
-  </div>
+  </session>
 </template>
 
 <script lang="ts">

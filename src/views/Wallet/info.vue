@@ -1,36 +1,38 @@
 <template>
-  <div class="card">
-    <el-card shadow="never">
-      <template #header>
-        <span>个人信息</span>
-      </template>
-      <div class="img">
-        <div class="img-box">
-          <img
-            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-            alt="头像"
-          />
-          <!-- <img :src="infos.header_img" alt=""> -->
+  <session>
+    <div class="card">
+      <el-card shadow="never">
+        <template #header>
+          <span>{{ $t('info') }}</span>
+        </template>
+        <div class="img">
+          <div class="img-box">
+            <img
+              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+              alt="头像"
+            />
+            <!-- <img :src="infos.header_img" alt=""> -->
+          </div>
         </div>
-      </div>
-      <el-divider></el-divider>
-      <div class="info-item">
-        <span>昵称</span>
-        <span>{{ infos?.nickname }}</span>
-      </div>
-      <el-divider></el-divider>
-      <div class="info-item">
-        <span>云豆</span>
-        <span>{{ infos?.current_price }}</span>
-      </div>
-      <el-divider></el-divider>
-      <div class="info-item">
-        <span>uid</span>
-        <span>{{ infos?.uid }}</span>
-      </div>
-      <el-divider></el-divider>
-    </el-card>
-  </div>
+        <el-divider></el-divider>
+        <div class="info-item">
+          <span>{{ $t('table.nickname') }}</span>
+          <span>{{ infos?.nickname }}</span>
+        </div>
+        <el-divider></el-divider>
+        <div class="info-item">
+          <span>{{ $t('table.price') }}</span>
+          <span>{{ infos?.current_price }}</span>
+        </div>
+        <el-divider></el-divider>
+        <div class="info-item">
+          <span>uid</span>
+          <span>{{ infos?.uid }}</span>
+        </div>
+        <el-divider></el-divider>
+      </el-card>
+    </div>
+  </session>
 </template>
 
 <script lang="ts">

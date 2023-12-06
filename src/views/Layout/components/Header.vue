@@ -39,6 +39,12 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
+      <el-button
+        style="display: block; margin-right: 32px"
+        @click="onFullScrene"
+      >
+        <el-icon style="color: #000" id="full"><FullScreen /></el-icon>
+      </el-button>
       <el-dropdown>
         <el-avatar
           :size="50"
@@ -60,7 +66,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { ArrowDown, Expand, Fold } from '@element-plus/icons-vue'
+import { ArrowDown, Expand, Fold, FullScreen } from '@element-plus/icons-vue'
 import i18n from '../../../utils/i18n'
 import { useLanguageStore } from '../../../store/languageStore'
 import router from '../../../router/index'
@@ -95,6 +101,16 @@ const isCollapse = ref<boolean>(true)
 function onSetCollapse() {
   collapseStore.collapse = isCollapse.value
   isCollapse.value = !isCollapse.value
+}
+// 全屏
+const is_full = ref<boolean>(false)
+function onFullScrene() {
+  if (!is_full.value) {
+    is_full.value = true
+    return document.documentElement.requestFullscreen()
+  }
+  is_full.value = false
+  document.exitFullscreen()
 }
 </script>
 

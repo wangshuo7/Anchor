@@ -1,5 +1,5 @@
 <template>
-  <div class="query">
+  <session>
     <el-form :form="queryForm" label-width="80px" @submit.prevent inline>
       <el-form-item label="游戏名称">
         <el-input
@@ -26,115 +26,117 @@
         <el-button @click="onClear">{{ $t('button.clear') }}</el-button>
       </el-form-item>
     </el-form>
-  </div>
-  <HModel>
-    <template #head>
-      <span style="font-weight: bolder">我的游戏</span>
-    </template>
-    <template #body>
-      <el-table
-        v-loading="loading"
-        :data="tableData"
-        style="width: 100%; height: 800px"
-        border
-      >
-        <el-table-column label="ID">
-          <template #default="{ row }">{{ row.game_id }}</template>
-        </el-table-column>
-        <el-table-column label="游戏名称" min-width="100">
-          <template #default="{ row }">{{ row.title }}</template>
-        </el-table-column>
-        <el-table-column label="游戏语言">
-          <template #default="{ row }">{{ row.game_lang_id }}</template>
-        </el-table-column>
-        <el-table-column label="游戏分类">
-          <template #default="{ row }">{{ row.game_cate_id }}</template>
-        </el-table-column>
-        <el-table-column label="系统要求">
-          <template #default="{ row }">{{ row.xitong_yaoqiu }}</template>
-        </el-table-column>
-        <el-table-column label="最低开播余额">
-          <template #default="{ row }">{{ row.min_price }}</template>
-        </el-table-column>
-        <el-table-column label="固定价格">
-          <template #default="{ row }">{{ row.price }}</template>
-        </el-table-column>
-        <el-table-column label="促销价格">
-          <template #default="{ row }">{{ row.cuxiao_price }}</template>
-        </el-table-column>
-        <el-table-column label="分成比例">
-          <template #default="{ row }">{{ row.divide }}</template>
-        </el-table-column>
-        <el-table-column label="客服信息">
-          <template #default="{ row }">{{ row.kefu }}</template>
-        </el-table-column>
-        <el-table-column label="使用激活码">
-          <template #default="{ row }">{{
-            row.is_user_jhm == 1 ? '否' : '是'
-          }}</template>
-        </el-table-column>
-        <el-table-column label="是否线上">
-          <template #default="{ row }">{{
-            row.is_xianxia == 1 ? '是' : '否'
-          }}</template>
-        </el-table-column>
-        <el-table-column label="是否冻结">
-          <template #default="{ row }">{{
-            row.is_xianxia == 1 ? '否' : '是'
-          }}</template>
-        </el-table-column>
-        <el-table-column label="公告">
-          <template #default="{ row }">{{ row.gonggao }}</template>
-        </el-table-column>
-        <el-table-column label="套餐">
-          <template #default="{ row }">
-            <div v-for="(item, index) in row.taocan" :key="index">
-              <div>套餐{{ index + 1 }}</div>
-              <div>
-                <span>天数：</span><span>{{ item.tdays }}</span>
-              </div>
-              <div>
-                <span>价格：</span><span>{{ item.tprice }}</span>
-              </div>
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column :label="$t('table.ctime')">
-          <template #default="{ row }">{{ formatTime(row.ctime) }}</template>
-        </el-table-column>
-        <el-table-column :label="$t('table.utime')">
-          <template #default="{ row }">{{ formatTime(row.uptime) }}</template>
-        </el-table-column>
-        <el-table-column
-          fixed="right"
-          :label="$t('table.operate')"
-          min-width="215"
+  </session>
+  <session>
+    <HModel>
+      <template #head>
+        <span style="font-weight: bolder">我的游戏</span>
+      </template>
+      <template #body>
+        <el-table
+          v-loading="loading"
+          :data="tableData"
+          style="width: 100%; height: 750px"
+          border
         >
-          <template #default="{ row }">
-            <el-button type="primary" @click="onViewRecord(row)"
-              >开播记录</el-button
-            >
-            <el-button @click="goFeedback(row)">反馈列表</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-    </template>
-    <template #foot>
-      <div class="pagination">
-        <el-pagination
-          background
-          layout="total,prev, pager, next, sizes"
-          :current-page.sync="currentPage"
-          :page-size="pageSize"
-          :page-sizes="[10, 20, 30]"
-          :total="totalItems"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        >
-        </el-pagination>
-      </div>
-    </template>
-  </HModel>
+          <el-table-column label="ID">
+            <template #default="{ row }">{{ row.game_id }}</template>
+          </el-table-column>
+          <el-table-column label="游戏名称" min-width="100">
+            <template #default="{ row }">{{ row.title }}</template>
+          </el-table-column>
+          <el-table-column label="游戏语言">
+            <template #default="{ row }">{{ row.game_lang_id }}</template>
+          </el-table-column>
+          <el-table-column label="游戏分类">
+            <template #default="{ row }">{{ row.game_cate_id }}</template>
+          </el-table-column>
+          <el-table-column label="系统要求">
+            <template #default="{ row }">{{ row.xitong_yaoqiu }}</template>
+          </el-table-column>
+          <el-table-column label="最低开播余额">
+            <template #default="{ row }">{{ row.min_price }}</template>
+          </el-table-column>
+          <el-table-column label="固定价格">
+            <template #default="{ row }">{{ row.price }}</template>
+          </el-table-column>
+          <el-table-column label="促销价格">
+            <template #default="{ row }">{{ row.cuxiao_price }}</template>
+          </el-table-column>
+          <el-table-column label="分成比例">
+            <template #default="{ row }">{{ row.divide }}</template>
+          </el-table-column>
+          <el-table-column label="客服信息">
+            <template #default="{ row }">{{ row.kefu }}</template>
+          </el-table-column>
+          <el-table-column label="使用激活码">
+            <template #default="{ row }">{{
+              row.is_user_jhm == 1 ? '否' : '是'
+            }}</template>
+          </el-table-column>
+          <el-table-column label="是否线上">
+            <template #default="{ row }">{{
+              row.is_xianxia == 1 ? '是' : '否'
+            }}</template>
+          </el-table-column>
+          <el-table-column label="是否冻结">
+            <template #default="{ row }">{{
+              row.is_xianxia == 1 ? '否' : '是'
+            }}</template>
+          </el-table-column>
+          <el-table-column label="公告">
+            <template #default="{ row }">{{ row.gonggao }}</template>
+          </el-table-column>
+          <el-table-column label="套餐">
+            <template #default="{ row }">
+              <div v-for="(item, index) in row.taocan" :key="index">
+                <div>套餐{{ index + 1 }}</div>
+                <div>
+                  <span>天数：</span><span>{{ item.tdays }}</span>
+                </div>
+                <div>
+                  <span>价格：</span><span>{{ item.tprice }}</span>
+                </div>
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column :label="$t('table.ctime')">
+            <template #default="{ row }">{{ formatTime(row.ctime) }}</template>
+          </el-table-column>
+          <el-table-column :label="$t('table.utime')">
+            <template #default="{ row }">{{ formatTime(row.uptime) }}</template>
+          </el-table-column>
+          <el-table-column
+            fixed="right"
+            :label="$t('table.operate')"
+            min-width="215"
+          >
+            <template #default="{ row }">
+              <el-button type="primary" @click="onViewRecord(row)"
+                >开播记录</el-button
+              >
+              <el-button @click="goFeedback(row)">反馈列表</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </template>
+      <template #foot>
+        <div class="pagination">
+          <el-pagination
+            background
+            layout="total,prev, pager, next, sizes"
+            :current-page.sync="currentPage"
+            :page-size="pageSize"
+            :page-sizes="[10, 20, 30]"
+            :total="totalItems"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          >
+          </el-pagination>
+        </div>
+      </template>
+    </HModel>
+  </session>
   <el-dialog v-model="dialogVisible" title="购买" width="70%">
     <Record :gameId="gameId"></Record>
   </el-dialog>
@@ -257,10 +259,7 @@ function formatTime(time: number) {
   justify-content: flex-end;
   align-items: center;
 }
-.query {
-  // margin-top: 20px;
-  padding: 20px;
-  padding-bottom: 0;
+session {
   .el-input {
     width: 250px;
   }

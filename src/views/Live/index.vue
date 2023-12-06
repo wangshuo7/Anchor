@@ -1,6 +1,9 @@
 <template>
-  <div>
+  <session>
     <HModel>
+      <template #head>
+        {{ $t('live') }}
+      </template>
       <template #body>
         <el-table
           v-loading="loading"
@@ -71,7 +74,7 @@
         </div>
       </template>
     </HModel>
-  </div>
+  </session>
 </template>
 
 <script lang="ts">

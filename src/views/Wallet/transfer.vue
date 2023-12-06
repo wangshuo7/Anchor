@@ -1,6 +1,6 @@
 <template>
-  <div style="width: 500px">
-    <el-form ref="ruleFormRef" :model="form" :rules="rules" label-width="140px">
+  <session>
+    <el-form ref="ruleFormRef" :model="form" :rules="rules" label-width="100px">
       <el-form-item :label="$t('form.transfer')" prop="toid">
         <el-input
           v-model="form.toid"
@@ -20,7 +20,7 @@
         <el-button @click="cancel">{{ $t('button.cancel') }}</el-button>
       </el-form-item>
     </el-form>
-  </div>
+  </session>
 </template>
 
 <script lang="ts">
@@ -62,4 +62,10 @@ function cancel() {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+session {
+  .el-input {
+    width: 300px;
+  }
+}
+</style>

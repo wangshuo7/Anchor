@@ -1,6 +1,12 @@
 <template>
-  <div>
-    <el-form ref="ruleFormRef" :model="form" inline :rules="rules">
+  <session>
+    <el-form
+      ref="ruleFormRef"
+      :model="form"
+      inline
+      :rules="rules"
+      label-width="100px"
+    >
       <el-form-item :label="$t('form.card')" prop="miyao">
         <el-input
           v-model="form.miyao"
@@ -14,7 +20,7 @@
         <el-button @click="cancel">{{ $t('button.cancel') }}</el-button>
       </el-form-item>
     </el-form>
-  </div>
+  </session>
 </template>
 
 <script lang="ts">
