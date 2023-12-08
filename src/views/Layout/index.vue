@@ -9,8 +9,7 @@
       </el-header>
       <el-main>
         <el-scrollbar>
-          <div v-if="route.path === '/'">欢迎登录互游云主播端！</div>
-          <Content v-else></Content>
+          <Content :key="contentKey"></Content>
         </el-scrollbar>
       </el-main>
     </el-container>
@@ -21,23 +20,31 @@
 import Menu from './components/Menu.vue'
 import Content from './components/Content.vue'
 import Header from './components/Header.vue'
-import { useRoute } from 'vue-router'
+// import { useRoute } from 'vue-router'
 import { useCollapseStore } from '../../store/collapse'
 import { computed } from 'vue'
+
 const collapseStore = useCollapseStore()
 const isCollapse = computed(() => collapseStore.collapse)
 
-const route = useRoute()
+// const route = useRoute()
+import { useReloadStore } from '../../store/reload'
+const reloadStore = useReloadStore()
+const contentKey = computed(() => reloadStore.contentKey)
 </script>
 
 <style lang="less" scoped>
 .layout-container-demo .el-header {
   position: relative;
+  // background-color: var(--el-color-primary-light-7);
+  // color: var(--el-text-color-primary);
   padding: 0;
   height: 100px;
 }
 .layout-container-demo .el-aside {
   color: var(--el-text-color-primary);
+  // background: var(--el-color-primary-light-8);
+  // width: 220px;
 }
 .aside {
   width: 220px;
@@ -50,7 +57,7 @@ const route = useRoute()
   border-right: none;
 }
 .layout-container-demo .el-main {
-  padding: 20px;
+  padding: 0;
   background-color: #f5f5f5;
 }
 .layout-container-demo .toolbar {

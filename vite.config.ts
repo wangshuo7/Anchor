@@ -5,7 +5,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://test.taichukeji.com',
+        target: 'http://box-server.huyouyun.cn',
         changeOrigin: true, // 允许跨域
         rewrite: (path) => path.replace(/^\/api/, '')
       }

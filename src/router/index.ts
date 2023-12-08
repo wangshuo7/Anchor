@@ -6,9 +6,15 @@ import { done, start } from '../utils/nprogress'
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Layout',
+    redirect: '/home',
     component: Layout,
     children: [
+      {
+        path: '/home',
+        name: 'Home',
+        component: () => import('@/views/Home/index.vue')
+      },
       // 游戏管理
       {
         path: '/game',
@@ -93,17 +99,7 @@ router.beforeEach(async (_pre, _next) => {
 router.afterEach(() => {
   done()
 })
-router.beforeEach((to, _from, next) => {
-  const isAuthenticated = localStorage.getItem('authtoken')
 
-  if (to.name !== 'Login' && !isAuthenticated) {
-    // 如果未登录且目标路由不是登录页，则重定向到登录页面
-    next({ name: 'Login' })
-  } else {
-    // 否则，继续正常导航
-    next()
-  }
-})
 export function useRouter() {
   return router
 }

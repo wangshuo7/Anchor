@@ -5,6 +5,7 @@ const i18n = createI18n({
   messages: {
     en: {
       // 面包屑
+      home: 'Home',
       welcome: 'welcome',
       game: 'Game Management',
       mine: 'My Game',
@@ -65,6 +66,7 @@ const i18n = createI18n({
       }
     },
     zh: {
+      home: '首页',
       welcome: '欢迎',
       game: '游戏管理',
       mine: '我的游戏',
@@ -124,6 +126,7 @@ const i18n = createI18n({
       }
     },
     tw: {
+      home: '首頁',
       welcome: '歡迎',
       game: '遊戲管理',
       mine: '我的遊戲',

@@ -14,6 +14,10 @@
           router
           :default-openeds="['/wallet']"
         >
+          <el-menu-item index="/home">
+            <el-icon><Monitor /></el-icon>
+            <template #title>{{ $t('home') }}</template>
+          </el-menu-item>
           <el-menu-item index="/game">
             <el-icon><SwitchFilled /></el-icon>
             <template #title>{{ $t('game') }}</template>
@@ -50,7 +54,8 @@ import {
   Orange,
   VideoCamera,
   Postcard,
-  SwitchFilled
+  SwitchFilled,
+  Monitor
 } from '@element-plus/icons-vue'
 import { computed } from 'vue'
 
