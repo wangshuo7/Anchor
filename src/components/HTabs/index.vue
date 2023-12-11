@@ -103,8 +103,7 @@ function closeTab(name: any) {
   } else if (activeTab.value === name) {
     // 判断是否关闭的是当前激活的标签
     // 设置 activeTab 为上一个标签的路由路径,当只剩一个标签时,跳转到最后剩下的路由即可
-    const prevTab =
-      tabs.value.length === 1 ? tabs.value[0] : tabs.value[index - 1]
+    const prevTab = tabs.value.length === 1 ? tabs.value[0] : tabs.value[index]
     if (prevTab) {
       activeTab.value = prevTab.route
       router.push(prevTab.route)

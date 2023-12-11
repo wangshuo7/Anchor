@@ -147,12 +147,57 @@
 
   <el-dialog v-model="dialogVisible" title="购买" width="30%">
     <div>
-      <el-form :model="form" label-width="150px">
-        <el-form-item label="天数">
-          <el-input v-model="form.tdays" placeholder="请输入天数"></el-input>
+      <el-form ref="ruleFormRef" :model="form" label-width="100px">
+        <el-form-item label="套餐">
+          <el-select
+            v-model="thePackage"
+            placeholder="请选择套餐"
+            @change="selectPackage"
+          >
+            <el-option label="自定义" :value="0"></el-option>
+            <el-option
+              v-for="(item, index) in packages"
+              :key="item.id"
+              :label="`套餐${index + 1}(${item.tdays}天，${item.tprice}云豆)`"
+              :value="item.id"
+            ></el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item label="价格">
-          <el-input v-model="form.tprice" placeholder="请输入价格"></el-input>
+        <el-form-item
+          label="天数"
+          prop="tdays"
+          :rules="[
+            {
+              required: true,
+              message: '请填写天数',
+              trigger: 'blur'
+            }
+          ]"
+        >
+          <el-input
+            v-model="form.tdays"
+            type="number"
+            :disabled="thePackage !== 0"
+            placeholder="请输入天数"
+          ></el-input>
+        </el-form-item>
+        <el-form-item
+          label="价格"
+          prop="tprice"
+          :rules="[
+            {
+              required: true,
+              message: '请填写价格',
+              trigger: 'blur'
+            }
+          ]"
+        >
+          <el-input
+            v-model="form.tprice"
+            type="number"
+            :disabled="thePackage !== 0"
+            placeholder="请输入价格"
+          ></el-input>
         </el-form-item>
         <el-form-item label="折扣券或免费激活码">
           <el-input
@@ -161,24 +206,35 @@
           ></el-input>
         </el-form-item>
       </el-form>
-      <el-button type="primary" @click="onComputed">计算</el-button>
-      <div>
-        <div>
-          <span>天数：</span><span>{{ jisuanData?.days }}</span>
-        </div>
-        <div>
-          <span>价格：</span><span>{{ jisuanData?.price }}</span>
-        </div>
-      </div>
     </div>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">{{
           $t('button.cancel')
         }}</el-button>
-        <el-button type="primary" @click="confirm">{{
-          $t('button.confirm')
+        <el-button type="primary" @click="confirmOrder">{{
+          $t('button.confirmOrder')
         }}</el-button>
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    v-model="secondVisible"
+    :title="$t('button.confirmOrder')"
+    width="30%"
+  >
+    <div>
+      <span>天数：</span><span>{{ jisuanData?.days }}</span>
+    </div>
+    <div>
+      <span>价格：</span><span>{{ jisuanData?.price }}</span>
+    </div>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="secondVisible = false">{{
+          $t('button.cancel')
+        }}</el-button>
+        <el-button type="primary" @click="confirm">购买</el-button>
       </span>
     </template>
   </el-dialog>
@@ -190,11 +246,11 @@ export default {
 }
 </script>
 <script lang="ts" setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, computed } from 'vue'
 import { buyGame, getGameList } from '../../api/game'
 import Moment from 'moment'
 import HModel from '../../components/HModel/index.vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage, FormInstance } from 'element-plus'
 import { useGlobalStore } from '../../store/globalStore'
 import router from '../../router'
 const globalStore = useGlobalStore()
@@ -231,6 +287,44 @@ const queryForm = ref<any>({
 })
 const tableData = ref<any>()
 const dialogVisible = ref<boolean>()
+const secondVisible = ref<boolean>()
+const ruleFormRef = ref<FormInstance>()
+// 套餐
+const thePackage = ref<any>(0)
+const packages = computed(() => {
+  const item =
+    tableData.value.find((game: any) => game.game_id === buyID.value) || {}
+  return item.taocan.map((i: any, index: number) => {
+    return Object.assign({}, i, { id: index + 1 })
+  })
+})
+function selectPackage() {
+  if (thePackage.value === 0) {
+    ruleFormRef.value?.resetFields()
+    return
+  }
+  ruleFormRef.value?.clearValidate(['tprice', 'tdays'])
+  const selectedPackageItem = packages.value.find(
+    (item: any) => item.id === thePackage.value
+  )
+  // 检查选中的套餐对象是否存在
+  if (selectedPackageItem) {
+    const { tdays, tprice } = selectedPackageItem
+    form.value.tdays = tdays
+    form.value.tprice = tprice
+  }
+}
+function confirmOrder() {
+  ruleFormRef.value?.validate((valid, filed) => {
+    if (valid) {
+      // secondVisible.value = true
+      onComputed()
+    } else {
+      // 表单验证未通过
+      console.log('filed', filed)
+    }
+  })
+}
 const buyID = ref<number>() // 购买时所用id
 const loading = ref<boolean>(false)
 // 分页相关
@@ -277,6 +371,7 @@ async function confirm() {
   if (res.code === 200) {
     ElMessage.success('购买成功')
     dialogVisible.value = false
+    secondVisible.value = false
     query()
   }
 }
@@ -302,7 +397,7 @@ async function onComputed() {
   })
   jisuanData.value = res.data
   if (res.code === 200) {
-    ElMessage.success('计算成功')
+    secondVisible.value = true
   }
 }
 // 查询
@@ -316,6 +411,7 @@ async function query() {
       orderby: queryForm.value.sort
     })
     tableData.value = response?.data?.list
+    console.log('table', tableData.value)
     totalItems.value = response?.data?.count
     loading.value = false
   } catch (error) {

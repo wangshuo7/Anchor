@@ -1,38 +1,39 @@
 <template>
   <div class="main">
-    <el-page-header @back="router.back()">
-      <template #content>
-        <span>{{ gameName }}</span>
-      </template>
-    </el-page-header>
-    <div v-if="feedback?.length >= 1">
-      <el-scrollbar class="feed">
-        <div>
-          <div class="box" v-for="(item, index) in feedback" :key="index">
-            <div class="parent">
-              <div class="par-left">
-                <div class="img-box">
-                  <img src="../../assets/huLogo1.jpg" />
-                </div>
-              </div>
-              <div class="par-right">
-                <div class="first">
-                  <div class="name">
-                    {{
-                      item.tj_user == 1
-                        ? item.zhubo_username
-                        : item.youxizuozhe_username
-                    }}
+    <session>
+      <el-page-header @back="router.back()">
+        <template #content>
+          <span>{{ gameName }}</span>
+        </template>
+      </el-page-header>
+      <div v-if="feedback?.length >= 1">
+        <el-scrollbar class="feed">
+          <div>
+            <div class="box" v-for="(item, index) in feedback" :key="index">
+              <div class="parent">
+                <div class="par-left">
+                  <div class="img-box">
+                    <img src="../../assets/huLogo1.jpg" />
                   </div>
                 </div>
-                <div class="second">
-                  {{ item.content }}
-                </div>
-                <div class="third">
-                  <div class="time" style="color: #999">
-                    {{ formatTime(item.ctime) }}
+                <div class="par-right">
+                  <div class="first">
+                    <div class="name">
+                      {{
+                        item.tj_user == 1
+                          ? item.zhubo_username
+                          : item.youxizuozhe_username
+                      }}
+                    </div>
                   </div>
-                  <!-- <div
+                  <div class="second">
+                    {{ item.content }}
+                  </div>
+                  <div class="third">
+                    <div class="time" style="color: #999">
+                      {{ formatTime(item.ctime) }}
+                    </div>
+                    <!-- <div
                     class="reply"
                     style="display: flex; align-items: center"
                     @click="replyParent(index)"
@@ -40,119 +41,122 @@
                     <el-icon style="margin-right: 5px"><ChatRound /></el-icon
                     >回复
                   </div> -->
-                </div>
-                <div style="display: flex" v-if="replyStates[index]">
-                  <el-input
-                    style="width: 70%; margin-right: 20px"
-                    placeholder="请输入回复内容"
-                    type="text"
-                    v-model="parentContent"
-                    @keyup.enter="replyParentConfirm(item.game_feedback_id)"
-                  />
-                  <el-button
-                    type="primary"
-                    @click="replyParentConfirm(item.game_feedback_id)"
-                    >回复</el-button
-                  >
-                </div>
-              </div>
-            </div>
-            <div
-              class="children"
-              v-for="(child, index) in item.childrens"
-              :key="index"
-            >
-              <div class="par-left">
-                <div class="img-box">
-                  <img
-                    v-if="child.tj_user == 1"
-                    src="../../assets/huLogo1.jpg"
-                  />
-                  <img v-else src="../../assets/huLogo.jpg" />
-                </div>
-              </div>
-              <div class="par-right">
-                <div class="first">
-                  <div style="display: flex; align-items: center">
-                    <span class="name">
-                      {{
-                        child.tj_user == 1
-                          ? child.zhubo_username
-                          : child.youxizuozhe_username
-                      }}
-                    </span>
-                    <span style="margin: 0 10px"
-                      ><el-tag type="info">回复</el-tag></span
+                  </div>
+                  <div style="display: flex" v-if="replyStates[index]">
+                    <el-input
+                      style="width: 70%; margin-right: 20px"
+                      placeholder="请输入回复内容"
+                      type="text"
+                      v-model="parentContent"
+                      @keyup.enter="replyParentConfirm(item.game_feedback_id)"
+                    />
+                    <el-button
+                      type="primary"
+                      @click="replyParentConfirm(item.game_feedback_id)"
+                      >回复</el-button
                     >
-                    <span class="reply-name">
-                      {{
-                        child.tj_user == 2
-                          ? child.zhubo_username
-                          : child.youxizuozhe_username
-                      }}
-                    </span>
-                    <span class="reply-content"> {{ child.pid_content }}</span>
                   </div>
                 </div>
-                <div class="second">
-                  {{ child.content }}
+              </div>
+              <div
+                class="children"
+                v-for="(child, index) in item.childrens"
+                :key="index"
+              >
+                <div class="par-left">
+                  <div class="img-box">
+                    <img
+                      v-if="child.tj_user == 1"
+                      src="../../assets/huLogo1.jpg"
+                    />
+                    <img v-else src="../../assets/huLogo.jpg" />
+                  </div>
                 </div>
-                <div class="third">
-                  <div class="time" style="color: #999">
-                    {{ formatTime(child.ctime) }}
+                <div class="par-right">
+                  <div class="first">
+                    <div style="display: flex; align-items: center">
+                      <span class="name">
+                        {{
+                          child.tj_user == 1
+                            ? child.zhubo_username
+                            : child.youxizuozhe_username
+                        }}
+                      </span>
+                      <span style="margin: 0 10px"
+                        ><el-tag type="info">回复</el-tag></span
+                      >
+                      <span class="reply-name">
+                        {{
+                          child.tj_user == 2
+                            ? child.zhubo_username
+                            : child.youxizuozhe_username
+                        }}
+                      </span>
+                      <span class="reply-content">
+                        {{ child.pid_content }}</span
+                      >
+                    </div>
+                  </div>
+                  <div class="second">
+                    {{ child.content }}
+                  </div>
+                  <div class="third">
+                    <div class="time" style="color: #999">
+                      {{ formatTime(child.ctime) }}
+                    </div>
+                    <div
+                      class="reply"
+                      style="display: flex; align-items: center"
+                      @click="replyChild(child.game_feedback_id)"
+                      v-if="child.tj_user == 2"
+                    >
+                      <el-icon style="margin-right: 5px"><ChatRound /></el-icon
+                      >回复
+                    </div>
                   </div>
                   <div
-                    class="reply"
-                    style="display: flex; align-items: center"
-                    @click="replyChild(child.game_feedback_id)"
-                    v-if="child.tj_user == 2"
+                    style="display: flex"
+                    v-if="replyStatesChild[child.game_feedback_id]"
                   >
-                    <el-icon style="margin-right: 5px"><ChatRound /></el-icon
-                    >回复
+                    <el-input
+                      style="width: 70%; margin-right: 20px"
+                      placeholder="请输入回复内容"
+                      type="text"
+                      v-model="childContent"
+                      @keyup.enter="replyChildConfirm(child.game_feedback_id)"
+                    />
+                    <el-button
+                      type="primary"
+                      @click="replyChildConfirm(child.game_feedback_id)"
+                      >回复</el-button
+                    >
                   </div>
                 </div>
-                <div
-                  style="display: flex"
-                  v-if="replyStatesChild[child.game_feedback_id]"
-                >
-                  <el-input
-                    style="width: 70%; margin-right: 20px"
-                    placeholder="请输入回复内容"
-                    type="text"
-                    v-model="childContent"
-                    @keyup.enter="replyChildConfirm(child.game_feedback_id)"
-                  />
-                  <el-button
-                    type="primary"
-                    @click="replyChildConfirm(child.game_feedback_id)"
-                    >回复</el-button
-                  >
-                </div>
               </div>
+              <div class="view-more">
+                <el-button
+                  @click="openMoreFeedback(item.first_id)"
+                  type="info"
+                  v-if="item.childrens.length >= 10"
+                  >显示更多</el-button
+                >
+              </div>
+              <el-divider />
             </div>
-            <div class="view-more">
-              <el-button
-                @click="openMoreFeedback(item.first_id)"
-                type="info"
-                v-if="item.childrens.length >= 10"
-                >显示更多</el-button
-              >
-            </div>
-            <el-divider />
           </div>
-        </div>
-      </el-scrollbar>
-    </div>
-    <div class="feed" v-else><el-empty description="暂无内容" /></div>
-    <div class="pagination">
-      <el-pagination
-        background
-        layout="total, prev, pager, next"
-        :current-page="currentPage"
-        :total="total"
-        @current-change="handleCurrentChange"
-      ></el-pagination>
-    </div>
+        </el-scrollbar>
+      </div>
+      <div class="feed" v-else><el-empty description="暂无内容" /></div>
+      <div class="pagination">
+        <el-pagination
+          background
+          layout="total, prev, pager, next"
+          :current-page="currentPage"
+          :total="total"
+          @current-change="handleCurrentChange"
+        ></el-pagination>
+      </div>
+    </session>
   </div>
   <div>
     <MoreFeedback
@@ -291,7 +295,7 @@ function formatTime(time: number) {
   width: 60%;
   height: 1000px;
   overflow: auto;
-  border: 1px solid skyblue;
+  // border: 1px solid skyblue;
   padding: 20px;
 }
 .pagination {

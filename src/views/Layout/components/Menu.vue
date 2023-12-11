@@ -81,17 +81,14 @@ const isCollapse = computed(() => collapseStore.collapse)
   background-color: #191a23 !important;
   border: none !important;
   .el-menu-item:hover {
-    background-color: #1c2434;
+    background-color: #1c2f55;
   }
-}
-.el-menu .el-menu-item {
-  background: #191a23;
-}
-:deep(.el-sub-menu__title):hover {
-  background-color: #1c2434 !important;
-}
-.el-sub-menu {
-  background-color: #191a23 !important;
+  :deep(.el-sub-menu) .el-sub-menu__title:hover {
+    background-color: #1c2f55 !important;
+  }
+  .el-menu-item {
+    background-color: #191a23;
+  }
 }
 .left {
   width: 100%;
@@ -105,21 +102,27 @@ const isCollapse = computed(() => collapseStore.collapse)
     display: flex;
     align-items: center;
     padding: 0 20px;
-    justify-content: space-around;
+    justify-content: center;
     // border-bottom: 1px solid skyblue;
     .logo-img {
       display: block;
-      height: 100%;
+      height: 60%;
       border-radius: 50%;
     }
     .logo-title {
       color: #fff;
       font-size: 20px;
+      margin-left: 10px;
     }
   }
 }
 
 :deep(.el-menu) {
   border: none;
+}
+.el-menu-item.is-active {
+  background: #1c2f55;
+  // border-radius: 10px;
+  // margin: 0px 10px;
 }
 </style>

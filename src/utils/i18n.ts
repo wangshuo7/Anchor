@@ -51,7 +51,8 @@ const i18n = createI18n({
         examine: 'Examine',
         save: 'Save',
         query: 'Query',
-        clear: 'Clear'
+        clear: 'Clear',
+        confirmOrder: 'Confirm Order'
       },
       message: {
         add: 'Add successfully',
@@ -111,7 +112,8 @@ const i18n = createI18n({
         examine: '审核',
         save: '保存',
         query: '查询',
-        clear: '清空'
+        clear: '清空',
+        confirmOrder: '确认订单'
       },
       message: {
         add: '添加成功',
@@ -171,7 +173,8 @@ const i18n = createI18n({
         examine: '審核',
         save: '保存',
         query: '查詢',
-        clear: '清空'
+        clear: '清空',
+        confirmOrder: '確認訂單'
       },
       message: {
         add: '添加成功',
