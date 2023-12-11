@@ -290,7 +290,7 @@ const dialogVisible = ref<boolean>()
 const secondVisible = ref<boolean>()
 const ruleFormRef = ref<FormInstance>()
 // 套餐
-const thePackage = ref<any>(0)
+const thePackage = ref<number>(0)
 const packages = computed(() => {
   const item =
     tableData.value.find((game: any) => game.game_id === buyID.value) || {}
@@ -423,6 +423,7 @@ function onClear() {
   queryForm.value = {}
 }
 watch(dialogVisible, () => {
+  thePackage.value = 0
   form.value = {
     tdays: '',
     tprice: '',
