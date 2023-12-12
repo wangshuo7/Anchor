@@ -424,6 +424,7 @@ function onClear() {
 }
 watch(dialogVisible, () => {
   thePackage.value = 0
+  ruleFormRef.value?.resetFields()
   form.value = {
     tdays: '',
     tprice: '',
