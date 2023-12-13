@@ -64,6 +64,14 @@ const i18n = createI18n({
         price: 'Please enter the YunDou number',
         withdrawal: 'Please enter the Withdrawal Yun Dou',
         card: 'Please enter the Rechargeable card'
+      },
+      contextmenu: {
+        reload: 'Reload',
+        close: 'Close',
+        closeOther: 'Close Others',
+        closeRight: 'Close to the Right',
+        closeLeft: 'Close to the Left',
+        closeAll: 'Close All'
       }
     },
     zh: {
@@ -125,6 +133,14 @@ const i18n = createI18n({
         price: '请输入云豆数量',
         withdrawal: '请输入提现云豆',
         card: '请输入充值卡'
+      },
+      contextmenu: {
+        reload: '重新加载',
+        close: '关闭',
+        closeOther: '关闭其他',
+        closeRight: '关闭右侧',
+        closeLeft: '关闭左侧',
+        closeAll: '全部关闭'
       }
     },
     tw: {
@@ -186,6 +202,14 @@ const i18n = createI18n({
         price: '請輸入雲豆數量',
         withdrawal: '請輸入提現雲豆',
         card: '請輸入充值卡'
+      },
+      contextmenu: {
+        reload: '重新加載',
+        close: '關閉',
+        closeOther: '關閉其他',
+        closeRight: '關閉右側',
+        closeLeft: '關閉左側',
+        closeAll: '全部關閉'
       }
     }
     // 添加更多语言翻译

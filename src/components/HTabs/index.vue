@@ -35,28 +35,28 @@
       class="contextmenu"
     >
       <li @click="reload" v-show="isReloadEnabled">
-        <el-icon class="contentmenu-icon"><RefreshRight /></el-icon>
-        <span>重新加载</span>
+        <el-icon class="contextmenu-icon"><RefreshRight /></el-icon>
+        <span>{{ $t('contextmenu.reload') }}</span>
       </li>
       <li @click="closeCurrent">
-        <el-icon class="contentmenu-icon"><Close /></el-icon>
-        <span>关闭</span>
+        <el-icon class="contextmenu-icon"><Close /></el-icon>
+        <span>{{ $t('contextmenu.close') }}</span>
       </li>
       <li @click="closeOther">
-        <el-icon class="contentmenu-icon"><Sort /></el-icon>
-        <span>关闭其他</span>
+        <el-icon class="contextmenu-icon"><Switch /></el-icon>
+        <span>{{ $t('contextmenu.closeOther') }}</span>
       </li>
       <li @click="closeRight">
-        <el-icon class="contentmenu-icon"><Right /></el-icon>
-        <span>关闭右侧</span>
+        <el-icon class="contextmenu-icon"><Right /></el-icon>
+        <span>{{ $t('contextmenu.closeRight') }}</span>
       </li>
       <li @click="closeLeft">
-        <el-icon class="contentmenu-icon"><Back /></el-icon>
-        <span>关闭左侧</span>
+        <el-icon class="contextmenu-icon"><Back /></el-icon>
+        <span>{{ $t('contextmenu.closeLeft') }}</span>
       </li>
       <li @click="closeAll">
-        <el-icon class="contentmenu-icon"><Minus /></el-icon>
-        <span>全部关闭</span>
+        <el-icon class="contextmenu-icon"><Minus /></el-icon>
+        <span>{{ $t('contextmenu.closeAll') }}</span>
       </li>
     </ul>
   </div>
@@ -74,7 +74,7 @@ import {
   Minus,
   Right,
   Back,
-  Sort
+  Switch
 } from '@element-plus/icons-vue'
 interface tabType {
   route: string
@@ -318,9 +318,7 @@ onBeforeUnmount(() => {
 
 // 右键
 .contextmenu {
-  width: 110px;
   margin: 0;
-  // border: 1px solid #ccc;
   background: #fff;
   z-index: 3000;
   position: absolute;
@@ -336,6 +334,7 @@ onBeforeUnmount(() => {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .contextmenu li {
+  padding-right: 28px;
   height: 30px;
   margin-bottom: 5px;
   margin: 0 5px 0;
@@ -344,7 +343,7 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   transition: all 0.2s ease;
-  .contentmenu-icon {
+  .contextmenu-icon {
     width: 16px;
     font-size: 16px;
     margin-right: 5px;

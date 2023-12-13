@@ -80,14 +80,14 @@ async function onSubmit() {
     if (valid) {
       const res: any = await login(send_data)
       if (res?.code === 200) {
-        localStorage.setItem('hoo_remember', remember.value + '')
+        localStorage.setItem('hoo_anchor_remember', remember.value + '')
         const basePassword = Base64.encode(form.password) // 加密
         if (remember.value) {
-          localStorage.setItem('hoo_username', form.username)
-          localStorage.setItem('hoo_password', basePassword)
+          localStorage.setItem('hoo_anchor_username', form.username)
+          localStorage.setItem('hoo_anchor_password', basePassword)
         } else {
-          localStorage.removeItem('hoo_username')
-          localStorage.removeItem('hoo_password')
+          localStorage.removeItem('hoo_anchor_username')
+          localStorage.removeItem('hoo_anchor_password')
         }
         ElMessage.success('登录成功')
       }
@@ -130,14 +130,14 @@ const psd_border = ref<boolean>(false)
 // 记住密码
 const remember = ref<boolean>(false)
 onMounted(() => {
-  const is_remember = localStorage.getItem('hoo_remember')
+  const is_remember = localStorage.getItem('hoo_anchor_remember')
   if (is_remember === 'true') {
     remember.value = true
   } else {
     remember.value = false
   }
-  const username = localStorage.getItem('hoo_username')
-  const password = localStorage.getItem('hoo_password')
+  const username = localStorage.getItem('hoo_anchor_username')
+  const password = localStorage.getItem('hoo_anchor_password')
   if (username) form.username = username
   if (password) form.password = Base64.decode(password) // 解密
 

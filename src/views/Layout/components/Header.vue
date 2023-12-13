@@ -39,12 +39,19 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <el-button
-        style="display: block; margin-right: 32px"
-        @click="onFullScrene"
+      <el-tooltip
+        effect="dark"
+        :content="!is_full ? '点击进入全屏' : '点击退出全屏'"
+        placement="bottom"
       >
-        <el-icon style="color: #000" id="full"><FullScreen /></el-icon>
-      </el-button>
+        <el-button
+          circle
+          style="display: block; margin-right: 32px"
+          @click="onFullScrene"
+        >
+          <el-icon style="color: #000" id="full"><FullScreen /></el-icon>
+        </el-button>
+      </el-tooltip>
       <el-dropdown>
         <el-avatar
           :size="50"
