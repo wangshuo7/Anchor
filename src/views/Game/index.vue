@@ -1,5 +1,5 @@
 <template>
-  <session>
+  <session style="min-width: 1100px">
     <el-form :form="queryForm" label-width="80px" @submit.prevent inline>
       <el-form-item label="游戏名称">
         <el-input
@@ -27,105 +27,35 @@
       </el-form-item>
     </el-form>
   </session>
-  <session>
-    <HModel>
+  <session style="min-width: 1100px">
+    <HModel style="min-width: 1050px">
       <template #head>
-        <span style="font-weight: bolder">{{ $t('game') }}</span>
+        <div style="font-weight: bolder">
+          <span>{{ $t('game') }}</span>
+          <span style="font-size: 12px; color: #7e7e7e"
+            >（点击图片查看详情）</span
+          >
+        </div>
       </template>
       <template #body>
-        <el-table
-          v-loading="loading"
-          :data="tableData"
-          style="width: 100%; height: 750px"
-          border
-        >
-          <el-table-column label="ID">
-            <template #default="{ row }">{{ row.game_id }}</template>
-          </el-table-column>
-          <el-table-column label="游戏名称" min-width="100">
-            <template #default="{ row }">{{ row.title }}</template>
-          </el-table-column>
-          <el-table-column label="游戏语言">
-            <template #default="{ row }">{{
-              getLanguageTitle(row.game_lang_id)
-            }}</template>
-          </el-table-column>
-          <el-table-column label="游戏分类">
-            <template #default="{ row }">{{
-              getCategoriesTitle(row.game_cate_id)
-            }}</template>
-          </el-table-column>
-          <el-table-column label="游戏平台">
-            <template #default="{ row }">{{
-              getPlatformsTitle(row.game_pingtai_id)
-            }}</template>
-          </el-table-column>
-          <el-table-column label="系统要求">
-            <template #default="{ row }">{{ row.xitong_yaoqiu }}</template>
-          </el-table-column>
-          <el-table-column label="最低开播余额">
-            <template #default="{ row }">{{ row.min_price }}</template>
-          </el-table-column>
-          <el-table-column label="固定价格">
-            <template #default="{ row }">{{ row.price }}</template>
-          </el-table-column>
-          <el-table-column label="促销价格">
-            <template #default="{ row }">{{ row.cuxiao_price }}</template>
-          </el-table-column>
-          <el-table-column label="分成比例">
-            <template #default="{ row }">{{ row.divide }}</template>
-          </el-table-column>
-          <el-table-column label="客服信息">
-            <template #default="{ row }">{{ row.kefu }}</template>
-          </el-table-column>
-          <el-table-column label="使用激活码">
-            <template #default="{ row }">{{
-              row.is_user_jhm == 1 ? '否' : '是'
-            }}</template>
-          </el-table-column>
-          <el-table-column label="是否线上">
-            <template #default="{ row }">{{
-              row.is_xianxia == 1 ? '是' : '否'
-            }}</template>
-          </el-table-column>
-          <el-table-column label="是否冻结">
-            <template #default="{ row }">{{
-              row.is_xianxia == 1 ? '否' : '是'
-            }}</template>
-          </el-table-column>
-          <el-table-column label="公告">
-            <template #default="{ row }">{{ row.gonggao }}</template>
-          </el-table-column>
-          <el-table-column label="套餐">
-            <template #default="{ row }">
-              <div v-for="(item, index) in row.taocan" :key="index">
-                <div>套餐{{ index + 1 }}</div>
-                <div>
-                  <span>天数：</span><span>{{ item.tdays }}</span>
-                </div>
-                <div>
-                  <span>价格：</span><span>{{ item.tprice }}</span>
-                </div>
-              </div>
-            </template>
-          </el-table-column>
-          <el-table-column :label="$t('table.ctime')">
-            <template #default="{ row }">{{ formatTime(row.ctime) }}</template>
-          </el-table-column>
-          <el-table-column :label="$t('table.utime')">
-            <template #default="{ row }">{{ formatTime(row.uptime) }}</template>
-          </el-table-column>
-          <el-table-column
-            fixed="right"
-            :label="$t('table.operate')"
-            min-width="185"
+        <div class="game-box">
+          <div
+            class="game-item"
+            v-for="(item, index) in tableData"
+            :key="index"
+            @click="onViewDetails(item)"
+            style="
+              background-image: url('/danzhu-card.jpg');
+              background-size: 100%;
+            "
           >
-            <template #default="{ row }">
-              <el-button type="primary" @click="onBuyGame(row)">购买</el-button>
-              <el-button @click="goFeedback(row)">反馈列表</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
+            <div class="game-item-top"></div>
+            <div class="game-item-bottom">
+              <span class="bottom-title">{{ item.title }}</span>
+              <span class="bottom-subtitle">{{ item.jianjie }}</span>
+            </div>
+          </div>
+        </div>
       </template>
       <template #foot>
         <div class="pagination">
@@ -134,7 +64,7 @@
             layout="total,prev, pager, next, sizes"
             :current-page.sync="currentPage"
             :page-size="pageSize"
-            :page-sizes="[10, 20, 30]"
+            :page-sizes="[9, 18, 27, 36]"
             :total="totalItems"
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
@@ -145,7 +75,14 @@
     </HModel>
   </session>
 
-  <el-dialog v-model="dialogVisible" title="购买" width="30%">
+  <!-- 购买 -->
+  <el-dialog v-model="dialogVisible" width="30%">
+    <template #header>
+      <div>
+        <span style="margin-right: 20px">购买</span>
+        <el-tag size="large">{{ game_name }}</el-tag>
+      </div>
+    </template>
     <div>
       <el-form ref="ruleFormRef" :model="form" label-width="100px">
         <el-form-item label="套餐">
@@ -218,6 +155,7 @@
       </span>
     </template>
   </el-dialog>
+  <!-- 确认购买 -->
   <el-dialog
     v-model="secondVisible"
     :title="$t('button.confirmOrder')"
@@ -238,6 +176,90 @@
       </span>
     </template>
   </el-dialog>
+  <!-- 详情 -->
+  <el-dialog v-model="detailVisible" :title="game_name" width="945">
+    <div class="detail">
+      <div
+        class="detail-head"
+        style="
+          background-image: linear-gradient(
+              to right,
+              rgba(51, 54, 58, 1) 0%,
+              rgba(51, 54, 58, 1) 40%,
+              rgba(51, 54, 58, 0) 70%
+            ),
+            url('/danzhu-card.jpg');
+          background-repeat: no-repeat;
+          background-position: right;
+        "
+      >
+        <div class="head-left">
+          <div class="head-title">{{ game_detail.title }}</div>
+          <div class="info">{{ game_detail.jianjie }}</div>
+          <div class="price" v-if="game_detail.cuxiao_price">
+            ￥{{ game_detail.price }}
+          </div>
+          <div class="cuxiao-price">
+            ￥{{
+              game_detail.cuxiao_price
+                ? game_detail.cuxiao_price
+                : game_detail.price
+            }}
+          </div>
+          <div class="btns">
+            <el-button
+              v-if="!hasPurchasedGame(game_detail.game_id)"
+              type="danger"
+              size="large"
+              @click="onBuyGame"
+              >购买游戏</el-button
+            >
+            <el-button v-else type="primary" size="large">下载游戏</el-button>
+            <el-button type="warning" size="large" :disabled="!game_detail.kefu"
+              >客服</el-button
+            >
+          </div>
+        </div>
+      </div>
+      <!-- 套餐 -->
+      <div class="detail-info package">
+        <h3>套餐</h3>
+        <div class="package-content">
+          <div
+            class="package-card"
+            v-for="(item, index) in game_detail.taocan"
+            :key="index"
+          >
+            <div class="card-left">套餐{{ index + 1 }}</div>
+            <div class="card-right">
+              <div>
+                <span>天数：</span><span>{{ item.tdays }}</span>
+              </div>
+              <div>
+                <span>价格：</span><span>{{ item.tprice }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 详细信息 -->
+      <div class="detail-info">
+        <h3>详细信息</h3>
+        <div class="info-item">
+          <div>
+            <span>开播余额:</span><span>{{ game_detail.min_price }}</span>
+          </div>
+          <div>
+            <span>分成比例:</span><span>{{ game_detail.divide }}</span>
+          </div>
+          <div>
+            <span>更新时间:</span
+            ><span>{{ formatTime(game_detail.uptime) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </el-dialog>
 </template>
 
 <script lang="ts">
@@ -251,44 +273,22 @@ import { buyGame, getGameList } from '../../api/game'
 import Moment from 'moment'
 import HModel from '../../components/HModel/index.vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import { useGlobalStore } from '../../store/globalStore'
-import router from '../../router'
-const globalStore = useGlobalStore()
-const platforms = ref<any>([]) // 获取平台
-const languages = ref<any>([]) // 获取语言
-const categories = ref<any>([]) // 获取分类
-const getLanguageTitle = (game_lang_id: any) => {
-  const ids = game_lang_id.split(',').map(Number)
-  const titles = ids.map((id: any) => {
-    const language = languages.value.find((item: any) => item.id === id)
-    return language ? language.title : '未知'
-  })
-  return titles.join(',')
-}
-const getCategoriesTitle = (game_cate_id: any) => {
-  const ids = game_cate_id.split(',').map(Number)
-  const titles = ids.map((id: any) => {
-    const category = categories.value.find((item: any) => item.id === id)
-    return category ? category.title : '未知'
-  })
-  return titles.join(',')
-}
-const getPlatformsTitle = (game_pingtai_id: any) => {
-  const ids = game_pingtai_id.split(',').map(Number)
-  const titles = ids.map((id: any) => {
-    const platform = platforms.value.find((item: any) => item.id === id)
-    return platform ? platform.title : '未知'
-  })
-  return titles.join(',')
-}
-const queryForm = ref<any>({
-  title: '',
-  sort: ''
+// import { useGlobalStore } from '../../store/globalStore'
+// import router from '../../router'
+import { useWindowSizeStore } from '../../store/windowStore'
+import { useToast } from 'vue-toastification'
+import { getMyGameList } from '../../api/mine'
+const Toast = useToast()
+const detailVisible = ref<boolean>(false) // 详情
+const windowSize = useWindowSizeStore()
+window.addEventListener('resize', () => {
+  windowSize.updateWindowSize()
 })
-const tableData = ref<any>()
-const dialogVisible = ref<boolean>()
-const secondVisible = ref<boolean>()
-const ruleFormRef = ref<FormInstance>()
+const buyID = ref<number>() // 购买时所用id
+const game_name = ref<string>() // 购买游戏名称
+const game_detail = ref<any>() // 游戏详情
+const my_game = ref<any>() // 我的游戏
+const loading = ref<boolean>(false)
 // 套餐
 const thePackage = ref<number>(0)
 const packages = computed(() => {
@@ -298,6 +298,47 @@ const packages = computed(() => {
     return Object.assign({}, i, { id: index + 1 })
   })
 })
+
+// const globalStore = useGlobalStore()
+// const platforms = ref<any>([]) // 获取平台
+// const languages = ref<any>([]) // 获取语言
+// const categories = ref<any>([]) // 获取分类
+// const getLanguageTitle = (game_lang_id: any) => {
+//   const ids = game_lang_id.split(',').map(Number)
+//   const titles = ids.map((id: any) => {
+//     const language = languages.value.find((item: any) => item.id === id)
+//     return language ? language.title : '未知'
+//   })
+//   return titles.join(',')
+// }
+// const getCategoriesTitle = (game_cate_id: any) => {
+//   const ids = game_cate_id.split(',').map(Number)
+//   const titles = ids.map((id: any) => {
+//     const category = categories.value.find((item: any) => item.id === id)
+//     return category ? category.title : '未知'
+//   })
+//   return titles.join(',')
+// }
+// const getPlatformsTitle = (game_pingtai_id: any) => {
+//   const ids = game_pingtai_id.split(',').map(Number)
+//   const titles = ids.map((id: any) => {
+//     const platform = platforms.value.find((item: any) => item.id === id)
+//     return platform ? platform.title : '未知'
+//   })
+//   return titles.join(',')
+// }
+const queryForm = ref<any>({
+  title: '',
+  sort: ''
+})
+const tableData = ref<any>()
+const dialogVisible = ref<boolean>()
+const secondVisible = ref<boolean>()
+const ruleFormRef = ref<FormInstance>()
+// 分页相关
+const currentPage = ref<number>(1) // 当前页
+const pageSize = ref<number>(18) // 每页显示条数
+const totalItems = ref<number>(0) // 总数据条数
 function selectPackage() {
   if (thePackage.value === 0) {
     ruleFormRef.value?.resetFields()
@@ -325,12 +366,6 @@ function confirmOrder() {
     }
   })
 }
-const buyID = ref<number>() // 购买时所用id
-const loading = ref<boolean>(false)
-// 分页相关
-const currentPage = ref<number>(1) // 当前页
-const pageSize = ref<number>(10) // 每页显示条数
-const totalItems = ref<number>(0) // 总数据条数
 
 // 当每页显示条数发生变化时触发
 function handleSizeChange(newSize: number) {
@@ -356,10 +391,29 @@ const form = ref<{
   code: ''
 })
 // 购买
-function onBuyGame(row: any) {
+function onBuyGame() {
   dialogVisible.value = true
-  buyID.value = row.game_id
 }
+// 详情
+function onViewDetails(row: any) {
+  detailVisible.value = true
+  buyID.value = row.game_id
+  game_name.value = row.title
+  game_detail.value = row
+  // console.log('detail', game_detail.value)
+  row.gonggao &&
+    Toast.info(`公告: ${row.gonggao}`, <any>{
+      position: 'top-center',
+      timeout: 4000
+    })
+}
+// 详情弹出框消失时，公告消失
+watch(
+  () => detailVisible.value,
+  (newVal) => {
+    if (!newVal) Toast.clear()
+  }
+)
 // 弹出框确定
 async function confirm() {
   const res: any = await buyGame({
@@ -372,19 +426,23 @@ async function confirm() {
     ElMessage.success('购买成功')
     dialogVisible.value = false
     secondVisible.value = false
+    updateMyGame()
     query()
   }
 }
+/**
+ * 详情
+ */
 // 反馈列表
-function goFeedback(row: any) {
-  router.push({
-    name: 'GameFeedback',
-    query: {
-      id: row.game_id,
-      name: row.title
-    }
-  })
-}
+// function goFeedback(row: any) {
+//   router.push({
+//     name: 'GameFeedback',
+//     query: {
+//       id: row.game_id,
+//       name: row.title
+//     }
+//   })
+// }
 // 计算
 const jisuanData = ref<any>()
 async function onComputed() {
@@ -411,7 +469,6 @@ async function query() {
       orderby: queryForm.value.sort
     })
     tableData.value = response?.data?.list
-    console.log('table', tableData.value)
     totalItems.value = response?.data?.count
     loading.value = false
   } catch (error) {
@@ -422,6 +479,7 @@ async function query() {
 function onClear() {
   queryForm.value = {}
 }
+
 watch(dialogVisible, () => {
   thePackage.value = 0
   ruleFormRef.value?.resetFields()
@@ -431,17 +489,26 @@ watch(dialogVisible, () => {
     code: ''
   }
 })
+// 更新我的游戏
+async function updateMyGame() {
+  const res = await getMyGameList({})
+  my_game.value = res.data.list.map((item: any) => item.mg_game_id)
+}
 // 获取列表
 onMounted(async () => {
-  await globalStore.setLanguage()
-  await globalStore.setCategory()
-  await globalStore.setPlatform()
-  languages.value = globalStore.language
-  categories.value = globalStore.category
-  platforms.value = globalStore.platform
+  // await globalStore.setLanguage()
+  // await globalStore.setCategory()
+  // await globalStore.setPlatform()
+  // languages.value = globalStore.language
+  // categories.value = globalStore.category
+  // platforms.value = globalStore.platform
+  updateMyGame()
   query()
 })
-
+// 检查是否已购买游戏
+function hasPurchasedGame(gameId: number) {
+  return my_game.value.includes(gameId)
+}
 // 时间格式化
 function formatTime(time: number) {
   return time ? Moment(time * 1000).format('YYYY-MM-DD HH:mm:ss') : '-'
@@ -465,6 +532,156 @@ function formatTime(time: number) {
 session {
   .el-input {
     width: 250px;
+  }
+}
+
+.game-box {
+  width: 100%;
+  // display: flex;
+  // justify-content: flex-start;
+  // align-items: center;
+  // flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(206px, 1fr));
+  gap: 20px;
+  padding: 0 50px;
+  .game-item {
+    width: 206px;
+    height: 156px;
+    background: #ccc;
+    border-radius: 10px;
+    // margin: 0 50px 50px 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    .game-item-top {
+      height: 96px;
+      position: relative;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .game-item-bottom {
+      padding-top: 10px;
+      height: 60px;
+      // background-color: #000;
+      backdrop-filter: blur(20px);
+      border-radius: 0 0 10px 10px;
+      overflow: hidden;
+      position: relative;
+      .bottom-title {
+        color: #fff;
+        padding-left: 10px;
+        margin-bottom: 5px;
+      }
+      .bottom-subtitle {
+        color: #9e9597;
+        padding-left: 10px;
+        width: 100%;
+        text-wrap: nowrap;
+        // line-height: 36px;
+        overflow: hidden;
+      }
+    }
+  }
+}
+// 详情-弹出框
+.detail {
+  .detail-head {
+    width: 900px;
+    height: 260px;
+    position: relative;
+    border-radius: 15px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    .head-left {
+      flex: 1;
+      color: #fff;
+      .head-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .info {
+        height: 20px;
+        margin-bottom: 20px;
+      }
+      .price {
+        text-decoration: line-through;
+        height: 18px;
+        color: #f5f5f599;
+      }
+      .cuxiao-price {
+        font-size: 18px;
+        height: 18px;
+        margin-bottom: 50px;
+        color: #f5f5f5;
+      }
+      .btns {
+        .el-button {
+          width: 100px;
+        }
+      }
+    }
+  }
+  .detail-info {
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    h3 {
+      color: #000;
+      height: 40px;
+    }
+    .info-item {
+      height: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      span:first-child {
+        margin-right: 20px;
+      }
+    }
+  }
+  .package {
+    margin-bottom: 20px;
+    width: 100%;
+    .package-content {
+      display: flex;
+      flex-wrap: wrap;
+      .package-card {
+        width: 170px;
+        height: 80px;
+        margin: 0 20px 20px 0;
+        // border: 2px solid #caa3a3;
+        border-radius: 10px;
+        display: flex;
+        background: #dcdfe6;
+        // background: #f56c6c;
+        box-shadow:
+          1.5px 1.5px 1.9px rgba(0, 0, 0, 0.02),
+          2.2px 2px 3.5px rgba(0, 0, 0, 0.03),
+          6px 6px 8px rgba(0, 0, 0, 0.04);
+        .card-left {
+          width: 50px;
+          height: 100%;
+          border-right: 1px solid #ccc;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .card-right {
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          // align-items: center;
+        }
+      }
+    }
   }
 }
 </style>

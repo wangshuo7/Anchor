@@ -21,7 +21,8 @@
     "swiper": "^11.0.5",
     "vue": "^3.3.4",
     "vue-i18n": "^9.6.2",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "@types/json-schema": "^7.0.14",
