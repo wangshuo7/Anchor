@@ -128,57 +128,57 @@ const Images = ref<any>([
     logo_src: '/swiper/logo1.png'
   },
   {
-    swiper_src: '/swiper/swiper2.jpg',
-    side_src: '/swiper/swiper-side2.webp',
+    swiper_src: '/swiper/swiper1.jpg',
+    side_src: '/swiper/swiper-side1.webp',
     alt: 'Swiper 2',
     name: '《Alan Wake 2》',
     time: '已推出',
     discription:
       '在这款来自 Remedy Entertainment 的最新心理惊悚游戏中，一系列仪式谋杀案正威胁着亮瀑镇。',
     price: '￥200.00 起',
-    logo_src: '/swiper/logo2.png'
+    logo_src: '/swiper/logo1.png'
   },
   {
-    swiper_src: '/swiper/swiper3.jpg',
-    side_src: '/swiper/swiper-side3.webp',
+    swiper_src: '/swiper/swiper1.jpg',
+    side_src: '/swiper/swiper-side1.webp',
     alt: 'Swiper 3',
     name: '《崩坏：星穹铁道》',
     time: '版本 1.5',
     discription: '“迷离幻夜谈”现已推出。',
     price: '免费',
-    logo_src: '/swiper/logo3.png'
+    logo_src: '/swiper/logo1.png'
   },
   {
-    swiper_src: '/swiper/swiper4.jpg',
-    side_src: '/swiper/swiper-side4.webp',
+    swiper_src: '/swiper/swiper1.jpg',
+    side_src: '/swiper/swiper-side1.webp',
     alt: 'Swiper 4',
     name: '《自杀小队：战胜正义联盟》数码豪华版',
     time: '2024 年 2 月 2 日即将推出',
     discription: '预购即可获得经典装束，以及提前72小时的抢先体验。',
     price: '￥522.00 起',
-    logo_src: '/swiper/logo4.png'
+    logo_src: '/swiper/logo1.png'
   },
   {
-    swiper_src: '/swiper/swiper5.jpg',
-    side_src: '/swiper/swiper-side5.webp',
+    swiper_src: '/swiper/swiper1.jpg',
+    side_src: '/swiper/swiper-side1.webp',
     alt: 'Swiper 5',
     name: '《Banishers: Ghosts of New Eden》',
     time: '将于 2 月 13 日推出',
     discription:
       '揭开瘆人的案件，和超自然的力量战斗。现在预购便可获得 Wanderer Set DLC。',
     price: '￥199.00 起',
-    logo_src: ''
+    logo_src: '/swiper/logo1.png'
   },
   {
-    swiper_src: '/swiper/swiper6.webp',
-    side_src: '/swiper/swiper-side6.webp',
+    swiper_src: '/swiper/swiper1.jpg',
+    side_src: '/swiper/swiper-side1.webp',
     alt: 'Swiper 6',
     name: '《Warhammer - Realms of Ruin》',
     time: '已推出',
     discription:
       '在这款以《Warhammer Age of Sigmar》为背景的既时策略游戏中，发动一场征服界域的残酷战争。',
     price: '￥198.00 起',
-    logo_src: '/swiper/logo6.png'
+    logo_src: '/swiper/logo1.png'
   }
 ])
 const theSwiper = ref<any>(null)
