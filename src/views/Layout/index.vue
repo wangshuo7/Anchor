@@ -56,6 +56,9 @@ const contentKey = computed(() => reloadStore.contentKey)
 .layout-container-demo .el-menu {
   border-right: none;
 }
+body[dark-mode='true'] .el-main {
+  background-color: var(--background-color-dark);
+}
 .layout-container-demo .el-main {
   padding: 0;
   background-color: #f5f5f5;

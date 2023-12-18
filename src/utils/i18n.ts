@@ -23,7 +23,11 @@ const i18n = createI18n({
         transfer: 'Transfer',
         yundou: 'Yun Dou',
         withdrawal: 'Withdrawal',
-        card: 'Rechargeable card'
+        card: 'Rechargeable card',
+        form_label: {
+          gameName: 'Game Name',
+          sort: 'Sort'
+        }
       },
       system: {
         logout: 'Log out'
@@ -63,7 +67,8 @@ const i18n = createI18n({
         transfer: 'Please enter the transfer ID',
         price: 'Please enter the YunDou number',
         withdrawal: 'Please enter the Withdrawal Yun Dou',
-        card: 'Please enter the Rechargeable card'
+        card: 'Please enter the Rechargeable card',
+        gameName: 'Please enter the Game name'
       },
       contextmenu: {
         reload: 'Reload',
@@ -72,6 +77,15 @@ const i18n = createI18n({
         closeRight: 'Close to the Right',
         closeLeft: 'Close to the Left',
         closeAll: 'Close All'
+      },
+      tooltip: {
+        lightmode: 'Click to switch to LightMode',
+        darkmode: 'Click to switch to DarkMode',
+        enterfull: 'Click to enter full screen',
+        leavefull: 'Click to exit full screen'
+      },
+      tips: {
+        view: 'Click on the image to view details'
       }
     },
     zh: {
@@ -92,7 +106,11 @@ const i18n = createI18n({
         transfer: '转账',
         yundou: '云豆',
         withdrawal: '提现',
-        card: '充值卡'
+        card: '充值卡',
+        form_label: {
+          gameName: '游戏名称',
+          sort: '排序'
+        }
       },
       system: {
         logout: '退出登录'
@@ -132,7 +150,8 @@ const i18n = createI18n({
         transfer: '请输入转账ID',
         price: '请输入云豆数量',
         withdrawal: '请输入提现云豆',
-        card: '请输入充值卡'
+        card: '请输入充值卡',
+        gameName: '请输入游戏名称'
       },
       contextmenu: {
         reload: '重新加载',
@@ -141,6 +160,15 @@ const i18n = createI18n({
         closeRight: '关闭右侧',
         closeLeft: '关闭左侧',
         closeAll: '全部关闭'
+      },
+      tooltip: {
+        lightmode: '点击切换亮色模式',
+        darkmode: '点击切换暗黑模式',
+        enterfull: '点击进入全屏',
+        leavefull: '点击退出全屏'
+      },
+      tips: {
+        view: '点击图片查看详情'
       }
     },
     tw: {
@@ -161,7 +189,11 @@ const i18n = createI18n({
         transfer: '轉賬',
         yundou: '雲豆',
         withdrawal: '提現',
-        card: '充值卡'
+        card: '充值卡',
+        form_label: {
+          gameName: '游戲名稱',
+          sort: '排序'
+        }
       },
       system: {
         logout: '退出登錄'
@@ -201,7 +233,8 @@ const i18n = createI18n({
         transfer: '請輸入轉賬ID',
         price: '請輸入雲豆數量',
         withdrawal: '請輸入提現雲豆',
-        card: '請輸入充值卡'
+        card: '請輸入充值卡',
+        gameName: '請輸入游戲名稱'
       },
       contextmenu: {
         reload: '重新加載',
@@ -210,6 +243,15 @@ const i18n = createI18n({
         closeRight: '關閉右側',
         closeLeft: '關閉左側',
         closeAll: '全部關閉'
+      },
+      tooltip: {
+        lightmode: '點擊切換亮色模式',
+        darkmode: '點擊切換暗黑模式',
+        enterfull: '點擊進入全屏',
+        leavefull: '點擊退出全屏'
+      },
+      tips: {
+        view: '點擊圖片查看詳情'
       }
     }
     // 添加更多语言翻译

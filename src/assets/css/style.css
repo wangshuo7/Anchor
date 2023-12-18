@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+div {
+  box-sizing: border-box;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+session {
+  display: block;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin: 20px 30px;
+  padding: 30px;
+  background-color: #fff;
+}
+:root {
+  --background-color-light: #f5f5f5;
+  --text-color-light: #000000;
+  --session-color-light: #fff;
+  --swiper-side-background-light: #e6e6e6;
+  --swiper-side-mark-light: rgba(187, 184, 184, 0.3);
+  --background-color-dark: #101014;
+  --text-color-dark: #ffffff;
+  --session-color-dark: #222222;
+  --swiper-side-background-dark: #2e2e2e;
+  --swiper-side-mark-dark: #363636;
+}
+/* 根据暗黑模式应用不同的样式 */
+body[dark-mode='true'] {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+body[dark-mode='true'] h3 {
+  color: var(--text-color-dark);
+}
+body[dark-mode='true'] session {
+  background-color: var(--session-color-dark);
+}
+body[dark-mode='false'] {
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}

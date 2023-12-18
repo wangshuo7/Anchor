@@ -1,15 +1,15 @@
 <template>
   <session style="min-width: 1100px">
-    <el-form :form="queryForm" label-width="80px" @submit.prevent inline>
-      <el-form-item label="游戏名称">
+    <el-form :form="queryForm" label-width="100px" @submit.prevent inline>
+      <el-form-item :label="$t('form.form_label.gameName')">
         <el-input
           @keyup.enter="query"
           v-model="queryForm.title"
           clearable
-          placeholder="请输入游戏名称"
+          :placeholder="$t('placeholder.gameName')"
         ></el-input>
       </el-form-item>
-      <el-form-item label="排序">
+      <el-form-item :label="$t('form.form_label.sort')">
         <el-select v-model="queryForm.sort" clearable>
           <el-option value="2" label="创建时间正序" />
           <el-option value="1" label="创建时间倒序" />
@@ -33,7 +33,7 @@
         <div style="font-weight: bolder">
           <span>{{ $t('game') }}</span>
           <span style="font-size: 12px; color: #7e7e7e"
-            >（点击图片查看详情）</span
+            >({{ $t('tips.view') }})</span
           >
         </div>
       </template>
@@ -632,7 +632,7 @@ session {
     display: flex;
     flex-direction: column;
     h3 {
-      color: #000;
+      // color: #000;
       height: 40px;
     }
     .info-item {
@@ -658,16 +658,13 @@ session {
         // border: 2px solid #caa3a3;
         border-radius: 10px;
         display: flex;
-        background: #dcdfe6;
+        // background: #dcdfe6;
         // background: #f56c6c;
-        box-shadow:
-          1.5px 1.5px 1.9px rgba(0, 0, 0, 0.02),
-          2.2px 2px 3.5px rgba(0, 0, 0, 0.03),
-          6px 6px 8px rgba(0, 0, 0, 0.04);
+        border: 2px solid #79bbff;
         .card-left {
           width: 50px;
           height: 100%;
-          border-right: 1px solid #ccc;
+          border-right: 2px solid #79bbff;
           display: flex;
           flex-direction: column;
           justify-content: center;

@@ -209,6 +209,24 @@ onMounted(() => {
 </script>
 
 <style lang="less" scoped>
+body[dark-mode='true'] {
+  .sidebox {
+    .side-item {
+      .side-mark {
+        background: var(--swiper-side-mark-dark);
+      }
+      .side-text {
+        color: #fff;
+      }
+    }
+    .side-item:hover {
+      background-color: var(--swiper-side-background-dark);
+    }
+    .side-item.active {
+      background-color: var(--swiper-side-background-dark);
+    }
+  }
+}
 /* 在屏幕宽度大于 2150 像素时应用的样式 */
 @media screen and (min-width: 2151px) {
   .container {
@@ -326,7 +344,7 @@ onMounted(() => {
         height: 100%;
         position: absolute;
         left: -100%;
-        background: rgba(187, 184, 184, 0.3);
+        background: var(--swiper-side-mark-light);
         animation: move-right 5200ms linear;
       }
       @keyframes move-right {
@@ -377,10 +395,10 @@ onMounted(() => {
       }
     }
     .side-item:hover {
-      background-color: #ebebeb;
+      background-color: var(--swiper-side-background-light);
     }
     .side-item.active {
-      background-color: #e6e6e6;
+      background-color: var(--swiper-side-background-light);
     }
   }
 }
@@ -503,7 +521,7 @@ onMounted(() => {
         height: 100%;
         position: absolute;
         left: -100%;
-        background: rgba(187, 184, 184, 0.3);
+        background: var(--swiper-side-mark-light);
         animation: move-right 5200ms linear;
       }
       @keyframes move-right {
@@ -553,11 +571,12 @@ onMounted(() => {
         z-index: 99;
       }
     }
+
     .side-item:hover {
-      background-color: #e6e6e6;
+      background-color: var(--swiper-side-background-light);
     }
     .side-item.active {
-      background-color: #e6e6e6;
+      background-color: var(--swiper-side-background-light);
     }
   }
 }
@@ -695,7 +714,7 @@ onMounted(() => {
         height: 100%;
         position: absolute;
         left: -100%;
-        background: rgba(187, 184, 184, 0.3);
+        background: var(--swiper-side-mark-light);
         animation: move-right 5200ms linear;
       }
       @keyframes move-right {
@@ -752,10 +771,10 @@ onMounted(() => {
       }
     }
     .side-item:hover {
-      background-color: #e6e6e6;
+      background-color: var(--swiper-side-background-light);
     }
     .side-item.active {
-      background-color: #e6e6e6;
+      background-color: var(--swiper-side-background-light);
     }
   }
 }
@@ -893,7 +912,7 @@ onMounted(() => {
         height: 100%;
         position: absolute;
         left: -100%;
-        background: rgba(187, 184, 184, 0.3);
+        background: var(--swiper-side-mark-light);
         animation: move-right 5200ms linear;
       }
       @keyframes move-right {
@@ -950,10 +969,10 @@ onMounted(() => {
       }
     }
     .side-item:hover {
-      background-color: #e6e6e6;
+      background-color: var(--swiper-side-background-light);
     }
     .side-item.active {
-      background-color: #e6e6e6;
+      background-color: var(--swiper-side-background-light);
     }
   }
 }
@@ -1087,7 +1106,7 @@ onMounted(() => {
 //         height: 100%;
 //         position: absolute;
 //         left: -100%;
-//         background: rgba(187, 184, 184, 0.3);
+//         background: var(--swiper-side-mark-light);
 //         animation: move-right 5200ms linear;
 //       }
 //       @keyframes move-right {
@@ -1144,10 +1163,10 @@ onMounted(() => {
 //       }
 //     }
 //     .side-item:hover {
-//       background-color: #e6e6e6;
+//       background-color: var(--swiper-side-background-dark);
 //     }
 //     .side-item.active {
-//       background-color: #e6e6e6;
+//       background-color: var(--swiper-side-background-dark);
 //     }
 //   }
 // }

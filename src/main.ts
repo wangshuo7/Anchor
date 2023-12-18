@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import './style.css'
+import './assets/css/style.less'
 import App from './App.vue'
 import axios from 'axios'
 // 引入路由
@@ -7,6 +7,7 @@ import router from './router'
 // 引入 element plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 // 引入 vue-i18n
 import i18n from './utils/i18n'
 // 引入normalize.css

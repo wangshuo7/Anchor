@@ -1,15 +1,15 @@
 <template>
   <session style="min-width: 1100px">
-    <el-form :form="queryForm" label-width="80px" @submit.prevent inline>
-      <el-form-item label="游戏名称">
+    <el-form :form="queryForm" label-width="100px" @submit.prevent inline>
+      <el-form-item :label="$t('form.form_label.gameName')">
         <el-input
           @keyup.enter="query"
           v-model="queryForm.title"
           clearable
-          placeholder="请输入游戏名称"
+          :placeholder="$t('placeholder.gameName')"
         ></el-input>
       </el-form-item>
-      <el-form-item label="排序">
+      <el-form-item :label="$t('form.form_label.sort')">
         <el-select v-model="queryForm.sort" clearable>
           <el-option value="2" label="创建时间正序" />
           <el-option value="1" label="创建时间倒序" />
@@ -629,7 +629,7 @@ session {
     display: flex;
     flex-direction: column;
     h3 {
-      color: #000;
+      // color: #000;
       height: 40px;
     }
     .info-item {
@@ -652,15 +652,16 @@ session {
         width: 170px;
         height: 80px;
         margin: 0 20px 20px 0;
-        border: 2px solid #caa3a3;
+        // border: 2px solid #caa3a3;
         border-radius: 10px;
         display: flex;
-        background: #ff9f79;
+        // background: #dcdfe6;
         // background: #f56c6c;
+        border: 2px solid #79bbff;
         .card-left {
           width: 50px;
           height: 100%;
-          border-right: 2px solid #caa3a3;
+          border-right: 2px solid #79bbff;
           display: flex;
           flex-direction: column;
           justify-content: center;

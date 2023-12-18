@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/moment": "^2.13.0",
+    "@vueuse/core": "^10.7.0",
     "axios": "^1.5.1",
     "element-plus": "^2.4.1",
     "js-base64": "^3.7.5",

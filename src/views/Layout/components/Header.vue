@@ -40,16 +40,25 @@
         </template>
       </el-dropdown>
       <el-tooltip
+        :content="isDark ? $t('tooltip.lightmode') : $t('tooltip.darkmode')"
+        placement="bottom"
+      >
+        <el-button @click="toggleThemeMode" circle>
+          <el-icon v-if="isDark"><Sunny /></el-icon>
+          <el-icon v-else><Moon /></el-icon>
+        </el-button>
+      </el-tooltip>
+      <el-tooltip
         effect="dark"
-        :content="!is_full ? '点击进入全屏' : '点击退出全屏'"
+        :content="!is_full ? $t('tooltip.enterfull') : $t('tooltip.leavefull')"
         placement="bottom"
       >
         <el-button
           circle
-          style="display: block; margin-right: 32px"
+          style="display: block; margin: 0 20px"
           @click="onFullScrene"
         >
-          <el-icon style="color: #000" id="full"><FullScreen /></el-icon>
+          <el-icon id="full"><FullScreen /></el-icon>
         </el-button>
       </el-tooltip>
       <el-dropdown>
@@ -72,16 +81,35 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { ArrowDown, Expand, Fold, FullScreen } from '@element-plus/icons-vue'
+import { ref, onMounted } from 'vue'
+import {
+  ArrowDown,
+  Expand,
+  Fold,
+  FullScreen,
+  Sunny,
+  Moon
+} from '@element-plus/icons-vue'
 import i18n from '../../../utils/i18n'
 import { useLanguageStore } from '../../../store/languageStore'
 import router from '../../../router/index'
 import HTabs from '../../../components/HTabs/index.vue'
 import { useCollapseStore } from '../../../store/collapse'
 import HBreadcrumbs from '../../../components/HBreadcrumbs/index.vue'
+import { isDark, toggleDark } from '../../../utils/dark'
+function toggleThemeMode() {
+  toggleDark()
+  if (isDark.value) {
+    document.body.setAttribute('dark-mode', 'true')
+  } else {
+    document.body.removeAttribute('dark-mode')
+  }
+}
+// 刷新浏览器时
+onMounted(() => {
+  isDark.value && document.body.setAttribute('dark-mode', 'true')
+})
 const collapseStore = useCollapseStore()
-
 const lang = ref<string>('zh')
 const languageStore = useLanguageStore() // 使用语言Store
 function changeCn() {
@@ -122,6 +150,9 @@ function onFullScrene() {
 </script>
 
 <style lang="less" scoped>
+body[dark-mode='true'] .header {
+  border-bottom: 1px solid #414243; // 272727 414243
+}
 .header {
   width: 100%;
   height: 60px;
