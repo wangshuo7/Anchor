@@ -315,8 +315,18 @@ onBeforeUnmount(() => {
     height: 100%;
   }
 }
-
 // 右键
+body[dark-mode='true'] .contextmenu {
+  background-color: #48484e;
+  box-shadow:
+    0 3px 6px -4px rgba(100, 100, 163, 0.12),
+    0 6px 16px 0 rgba(100, 100, 163, 0.08),
+    0 9px 28px 8px rgba(100, 100, 163, 0.05);
+  color: #fff;
+  li:hover {
+    background-color: #59595e;
+  }
+}
 .contextmenu {
   margin: 0;
   background: #fff;
