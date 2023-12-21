@@ -1,20 +1,20 @@
-### 项目名称
+## 项目名称
 
 互游云平台 Anchor（主播端）
 
-### 安装依赖
+## 安装依赖
 
 npm install
 
-### 启动项目
+## 启动项目
 
 npm run dev
 
-### 构建项目
+## 构建项目
 
 npm run build
 
-### 技术栈
+## 技术栈
 
 -Vue3
 -TS
@@ -26,7 +26,7 @@ npm run build
 -Vue-router
 -Element plus
 
-### src文件目录
+## src文件目录
 
 src/
 |-api/
@@ -53,19 +53,19 @@ views/
 |————component/
 |————————(...).vue          (公共组件)
 
-### 代码风格
+## 代码风格
 
-## 单文件组件命名 (大驼峰)
+### 单文件组件命名 (大驼峰)
 
 components/
 |- MyComponent.vue
 
-## 基础组件名称(全部以H为开头)
+### 基础组件名称(全部以H为开头)
 components/
 |-HModel.vue
 |-HBreadcrumbs.vue
 
-## v-bind v-on v-slot 应尽量使用语法糖
+### v-bind v-on v-slot 应尽量使用语法糖
 
 <input
 :value="newTodoText"
